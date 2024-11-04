@@ -74,7 +74,7 @@ sf::Shape* Entity::GetShape()
 
 void Entity::Update()
 {
-	InternalUpdate();
+	OnUpdate();
 
 	float dt = GameManager::Get()->GetDeltaTime();
 

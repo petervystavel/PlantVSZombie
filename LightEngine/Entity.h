@@ -33,7 +33,7 @@ protected:
     virtual ~Entity() {};
     Entity(float x, float y, float radius, const sf::Color& color);
 
-    virtual void InternalUpdate() = 0;
+    virtual void OnUpdate() = 0;
     virtual void OnCollision(Entity* collidedWith) = 0;
 	
 private:

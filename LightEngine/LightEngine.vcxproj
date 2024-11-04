@@ -19,16 +19,32 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Behaviour.cpp" />
+    <ClCompile Include="Debug.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="TestEntity.cpp" />
+    <ClCompile Include="Plant.cpp" />
+    <ClCompile Include="PlantAction.cpp" />
+    <ClCompile Include="StateMachine.cpp" />
+    <ClCompile Include="Transition.cpp" />
+    <ClCompile Include="Zombie.cpp" />
+    <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="Utils.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Action.h" />
+    <ClInclude Include="Behaviour.h" />
+    <ClInclude Include="Condition.h" />
+    <ClInclude Include="Debug.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="GameManager.h" />
-    <ClInclude Include="TestEntity.h" />
+    <ClInclude Include="Plant.h" />
+    <ClInclude Include="PlantAction.h" />
+    <ClInclude Include="StateMachine.h" />
+    <ClInclude Include="Transition.h" />
+    <ClInclude Include="Zombie.h" />
+    <ClInclude Include="GameScene.h" />
     <ClInclude Include="Utils.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -85,7 +101,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(SolutionDir)..\StateMachine\StateMachine;$(IncludePath)</IncludePath>
+    <IncludePath>$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

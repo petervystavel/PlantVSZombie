@@ -1,14 +1,20 @@
 #include "GameManager.h"
 
 #include "Entity.h"
+#include "Debug.h"
 
-#include <SFML/Graphics/RenderWindow.hpp>
-#include <SFML/Graphics/Shape.hpp>
+#include <SFML/Graphics.hpp>
+#include <SFML/Window.hpp>
+
+#include <iostream>
 
 GameManager::GameManager()
 {
-	mWindow = nullptr;
+	mpWindow = nullptr;
 	mDeltaTime = 0.0f;
+	mpScene = nullptr;
+	mWindowWidth = -1;
+	mWindowHeight = -1;
 }
 
 GameManager* GameManager::Get()
@@ -18,13 +24,63 @@ GameManager* GameManager::Get()
 	return mInstance;
 }
 
-void GameManager::SetWindow(sf::RenderWindow* window)
+GameManager::~GameManager()
 {
-	mWindow = window;
+	delete mpWindow;
+	delete mpScene;
+
+	for (Entity* entity : mEntities)
+	{
+		delete entity;
+	}
+}
+
+void GameManager::CreateWindow(unsigned int width, unsigned int height, const char* title, int fpsLimit)
+{
+	_ASSERT(mpWindow == nullptr);
+
+	mpWindow = new sf::RenderWindow(sf::VideoMode(width, height), title);
+	mpWindow->setFramerateLimit(fpsLimit);
+
+	mWindowWidth = width;
+	mWindowHeight = height;
+}
+
+void GameManager::Run()
+{
+	if (mpWindow == nullptr) 
+	{
+		std::cout << "Window not created, creating default window" << std::endl;
+		CreateWindow(1280, 720, "Default window");
+	}
+
+	_ASSERT(mpScene != nullptr);
+
+	sf::Clock clock;
+	while (mpWindow->isOpen())
+	{
+		SetDeltaTime(clock.restart().asSeconds());
+
+		sf::Event event;
+		while (mpWindow->pollEvent(event))
+		{
+			if (event.type == sf::Event::Closed)
+			{
+				mpWindow->close();
+			}
+
+			mpScene->HandleInput(event);
+		}
+
+		Update();
+		Draw();
+	}
 }
 
 void GameManager::Update()
 {
+	mpScene->Update();
+
     //Update
     for (auto it = mEntities.begin(); it != mEntities.end(); )
     {
@@ -65,10 +121,23 @@ void GameManager::Update()
 
 void GameManager::Draw()
 {
+	mpWindow->clear();
+	
 	for (Entity* entity : mEntities)
 	{
-		mWindow->draw(*entity->GetShape());
+		mpWindow->draw(*entity->GetShape());
 	}
+	
+	std::vector<Line>& lines = Debug::GetLines();
+	for (Line& line : lines)
+	{
+		sf::Vertex vertices[2] = { line.start, line.end };
+		mpWindow->draw(vertices, 2, sf::Lines);
+	}
+
+	Debug::ClearLines();
+
+	mpWindow->display();
 }
 
 void GameManager::SetDeltaTime(float deltaTime)
@@ -79,4 +148,24 @@ void GameManager::SetDeltaTime(float deltaTime)
 float GameManager::GetDeltaTime() const
 {
 	return mDeltaTime;
+}
+
+sf::RenderWindow* GameManager::GetWindow() const
+{
+	return mpWindow;
+}
+
+void Scene::SetGameManager(GameManager* pGameManager) 
+{
+	mpGameManager = pGameManager;
+}
+
+int Scene::GetWindowWidth() const
+{
+	return mpGameManager->mWindowWidth;
+}
+
+int Scene::GetWindowHeight() const
+{
+	return mpGameManager->mWindowHeight;
 }

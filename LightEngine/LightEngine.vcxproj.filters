@@ -1,60 +1,94 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Fichiers sources">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Fichiers d%27en-tête">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
-    <Filter Include="Fichiers de ressources">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
-    <Filter Include="Fichiers d%27en-tête\Engine">
+    <Filter Include="Engine">
       <UniqueIdentifier>{a8d0131e-eb50-44ac-848b-7a821ba71b21}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Fichiers d%27en-tête\Game">
+    <Filter Include="Game">
+      <UniqueIdentifier>{656b759f-efb2-4f59-b546-0dd585a90074}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\StateMachine">
       <UniqueIdentifier>{54f9566d-eec3-46ad-82d3-6b67b6e11b84}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Fichiers sources\Engine">
-      <UniqueIdentifier>{15afa961-6566-4a62-be7d-cd32058aa7c2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Fichiers sources\Game">
-      <UniqueIdentifier>{0f0b3720-86a1-4524-8672-4bd39582f919}</UniqueIdentifier>
+    <Filter Include="Game\PlantStateMachine">
+      <UniqueIdentifier>{e5a990fd-2950-4273-9213-ca67aec6d3fd}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Entity.cpp">
-      <Filter>Fichiers sources\Engine</Filter>
+      <Filter>Engine</Filter>
     </ClCompile>
     <ClCompile Include="GameManager.cpp">
-      <Filter>Fichiers sources\Engine</Filter>
+      <Filter>Engine</Filter>
     </ClCompile>
     <ClCompile Include="Utils.cpp">
-      <Filter>Fichiers sources\Engine</Filter>
+      <Filter>Engine</Filter>
     </ClCompile>
-    <ClCompile Include="TestEntity.cpp">
-      <Filter>Fichiers sources\Game</Filter>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Debug.cpp">
+      <Filter>Engine</Filter>
     </ClCompile>
-    <ClCompile Include="main.cpp">
-      <Filter>Fichiers sources</Filter>
+    <ClCompile Include="Plant.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Zombie.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="GameScene.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Behaviour.cpp">
+      <Filter>Engine\StateMachine</Filter>
+    </ClCompile>
+    <ClCompile Include="Transition.cpp">
+      <Filter>Engine\StateMachine</Filter>
+    </ClCompile>
+    <ClCompile Include="StateMachine.cpp">
+      <Filter>Engine\StateMachine</Filter>
+    </ClCompile>
+    <ClCompile Include="PlantAction.cpp">
+      <Filter>Game\PlantStateMachine</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Entity.h">
-      <Filter>Fichiers d%27en-tête\Engine</Filter>
+      <Filter>Engine</Filter>
     </ClInclude>
     <ClInclude Include="GameManager.h">
-      <Filter>Fichiers d%27en-tête\Engine</Filter>
+      <Filter>Engine</Filter>
     </ClInclude>
     <ClInclude Include="Utils.h">
-      <Filter>Fichiers d%27en-tête\Engine</Filter>
+      <Filter>Engine</Filter>
     </ClInclude>
-    <ClInclude Include="TestEntity.h">
-      <Filter>Fichiers d%27en-tête\Game</Filter>
+    <ClInclude Include="Debug.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Plant.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Zombie.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="GameScene.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Action.h">
+      <Filter>Engine\StateMachine</Filter>
+    </ClInclude>
+    <ClInclude Include="Behaviour.h">
+      <Filter>Engine\StateMachine</Filter>
+    </ClInclude>
+    <ClInclude Include="Condition.h">
+      <Filter>Engine\StateMachine</Filter>
+    </ClInclude>
+    <ClInclude Include="Transition.h">
+      <Filter>Engine\StateMachine</Filter>
+    </ClInclude>
+    <ClInclude Include="StateMachine.h">
+      <Filter>Engine\StateMachine</Filter>
+    </ClInclude>
+    <ClInclude Include="PlantAction.h">
+      <Filter>Game\PlantStateMachine</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
