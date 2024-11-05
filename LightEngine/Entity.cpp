@@ -57,6 +57,16 @@ void Entity::GoToPosition(float x, float y)
 	mDirection = Utils::Vector2Normalize(sf::Vector2f(x, y) - GetPosition());
 }
 
+void Entity::SetTag(int tag)
+{
+	mTag = tag;
+}
+
+bool Entity::IsTag(int tag) const
+{
+	return mTag == tag;
+}
+
 void Entity::SetSpeed(float speed)
 {
 	mSpeed = speed;
@@ -84,4 +94,9 @@ void Entity::Update()
 	newPosition.y += dt * mSpeed * mDirection.y;
 
 	mShape.move(newPosition);
+}
+
+Scene* Entity::GetScene() const
+{
+	return GameManager::Get()->GetScene();
 }

@@ -2,6 +2,8 @@
 
 #include "GameManager.h"
 
+#include <list>
+
 class Plant;
 class Zombie;
 
@@ -20,15 +22,26 @@ struct AABB
 
 class GameScene : public Scene
 {
+public:
+	enum Tag
+	{
+		PLANT,
+		ZOMBIE,
+		PROJECTILE
+	};
+
 	Plant* mpPlants[3];
+	std::list<Zombie*> mZombies[3];
 	AABB mAreas[3];
 
 private:
-	const AABB* GetClickedArea(int x, int y) const;
+	int GetClickedArea(int x, int y) const;
 
 public:
 	void Initialize() override;
 	void HandleInput(const sf::Event& event) override;
 	void Update() override;
+
+	bool IsZombieInArea(int index) const;
 };
 

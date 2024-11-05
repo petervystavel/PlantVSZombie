@@ -9,6 +9,8 @@ namespace sf
     class Color;
 }
 
+class Scene;
+
 class Entity
 {
 protected:
@@ -16,6 +18,7 @@ protected:
     sf::Vector2f mDirection;
     float mSpeed;
     bool mToDestroy;
+    int mTag;
 
 public:
     void GoToPosition(float x, float y);
@@ -23,11 +26,15 @@ public:
     const sf::Vector2f& GetPosition() const;
     void SetSpeed(float speed);
 	void SetDirection(float x, float y);
+	void SetTag(int tag);
+	bool IsTag(int tag) const;
 
     sf::Shape* GetShape();
     void Destroy();
     bool ToDestroy() const;
 	bool IsColliding(Entity* other) const;
+
+	Scene* GetScene() const;
 
 protected:
     virtual ~Entity() {};

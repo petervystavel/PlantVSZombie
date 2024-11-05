@@ -12,12 +12,23 @@ class Plant : public Entity
 		Idle,
 		Shooting,
 		Reloading,
-	};;
 
+		Count
+	};
+
+	float mShootCadence = 1.0f;
+	float mShootTimer = 0.0f;
+	int mAreaIndex;
 
 public:
 	Plant(float x, float y, float radius, const sf::Color& color);
 
-	void OnUpdate() override {};
+	void SetAreaIndex(int index) { mAreaIndex = index; }
+	int GetAreaIndex() { return mAreaIndex; }
+
+	void OnUpdate() override;
 	void OnCollision(Entity* pCollidedWith) override;
+	
+	void TryShoot();
+	void ClearShootTimer();
 };

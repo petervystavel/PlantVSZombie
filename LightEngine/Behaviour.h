@@ -16,11 +16,11 @@ public:
     ~Behaviour();
 
     void Start();
-    void Update();
+    int Update();
     void End();
 
-    Action<T>* CreateAction();
-    Transition<T>* CreateTransition();
+    void AddAction(Action<T>* action);
+    Transition<T>* CreateTransition(int state);
 };
 
 
@@ -45,22 +45,18 @@ Behaviour<T>::~Behaviour()
 }
 
 template<typename T>
-Transition<T>* Behaviour<T>::CreateTransition()
+Transition<T>* Behaviour<T>::CreateTransition(int state)
 {
-	Transition<T>* pTransition = new Transition<T>();
+	Transition<T>* pTransition = new Transition<T>(state);
     mTransitions.push_back(pTransition);
 
 	return pTransition;
 }
 
 template<typename T>
-Action<T>* Behaviour<T>::CreateAction()
+void Behaviour<T>::AddAction(Action<T>* pAction)
 {
-	Action<T>* pAction = new Action<T>();
-
     mActions.push_back(pAction);
-
-	return pAction;
 }
 
 template<typename T>
@@ -73,7 +69,7 @@ void Behaviour<T>::Start()
 }
 
 template<typename T>
-void Behaviour<T>::Update()
+int Behaviour<T>::Update()
 {
     for (const auto& a : mActions)
     {
@@ -82,9 +78,13 @@ void Behaviour<T>::Update()
 
     for (const auto& t : mTransitions)
     {
-        if (t->Try(mOwner))
-            break;
+        if (t->Try(mOwner)) 
+        {
+			return t->GetTransitionState();
+        }
     }
+
+	return -1;
 }
 
 

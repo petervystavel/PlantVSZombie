@@ -10,18 +10,22 @@ class StateMachine
 	std::vector<Behaviour<T>*> mBehaviours;
 	int mCurrentState;
 
+	T* mOwner;
+
 public:
-	StateMachine();
+	StateMachine(T* owner, int stateCount);
 
 	void Update();
 	void SetState(int state);
-	Behaviour<T>* CreateBehaviour();
+	Behaviour<T>* CreateBehaviour(int state);
 };
 
 template<typename T>
-StateMachine<T>::StateMachine()
+StateMachine<T>::StateMachine(T* owner, int stateCount)
 {
-	mCurrentState = 0;
+	mOwner = owner;
+	mCurrentState = -1;
+	mBehaviours.resize(stateCount);
 }
 
 template<typename T>
@@ -38,14 +42,24 @@ void StateMachine<T>::SetState(int state)
 template<typename T>
 void StateMachine<T>::Update()
 {
-	mBehaviours[mCurrentState]->Update();
+	if(mCurrentState == -1)
+		return;
+
+	int transitionState = mBehaviours[mCurrentState]->Update();
+	
+	if (transitionState == -1)
+		return;
+
+	SetState(transitionState);
 }
 
 template<typename T>
-Behaviour<T>* StateMachine<T>::CreateBehaviour()
+Behaviour<T>* StateMachine<T>::CreateBehaviour(int state)
 {
-	Behaviour<T>* pBehaviour = new Behaviour<T>();
-	mBehaviours.push_back(pBehaviour);
+	_ASSERT(state >= 0 && state < mBehaviours.size());
+
+	Behaviour<T>* pBehaviour = new Behaviour<T>(mOwner);
+	mBehaviours[state] = pBehaviour;
 
 	return pBehaviour;
 }

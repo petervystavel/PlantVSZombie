@@ -49,6 +49,12 @@
     <ClCompile Include="PlantAction.cpp">
       <Filter>Game\PlantStateMachine</Filter>
     </ClCompile>
+    <ClCompile Include="Projectile.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="PlantCondition.cpp">
+      <Filter>Game\PlantStateMachine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Entity.h">
@@ -88,6 +94,12 @@
       <Filter>Engine\StateMachine</Filter>
     </ClInclude>
     <ClInclude Include="PlantAction.h">
+      <Filter>Game\PlantStateMachine</Filter>
+    </ClInclude>
+    <ClInclude Include="Projectile.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="PlantCondition.h">
       <Filter>Game\PlantStateMachine</Filter>
     </ClInclude>
   </ItemGroup>

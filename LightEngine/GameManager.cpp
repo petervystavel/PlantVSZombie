@@ -54,6 +54,10 @@ void GameManager::Run()
 		CreateWindow(1280, 720, "Default window");
 	}
 
+	sf::Font font;
+	bool fontLoaded = font.loadFromFile("Hack-Regular.ttf");
+	_ASSERT(fontLoaded);
+
 	_ASSERT(mpScene != nullptr);
 
 	sf::Clock clock;
@@ -116,6 +120,11 @@ void GameManager::Update()
         }
     }
 
+	for (auto it = mEntitiesToDestroy.begin(); it != mEntitiesToDestroy.end(); ++it) 
+	{
+		delete* it;
+	}
+
     mEntitiesToDestroy.clear();
 }
 
@@ -148,6 +157,11 @@ void GameManager::SetDeltaTime(float deltaTime)
 float GameManager::GetDeltaTime() const
 {
 	return mDeltaTime;
+}
+
+Scene* GameManager::GetScene() const
+{
+	return mpScene;
 }
 
 sf::RenderWindow* GameManager::GetWindow() const

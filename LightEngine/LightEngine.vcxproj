@@ -24,8 +24,10 @@
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="PlantCondition.cpp" />
     <ClCompile Include="Plant.cpp" />
     <ClCompile Include="PlantAction.cpp" />
+    <ClCompile Include="Projectile.cpp" />
     <ClCompile Include="StateMachine.cpp" />
     <ClCompile Include="Transition.cpp" />
     <ClCompile Include="Zombie.cpp" />
@@ -39,8 +41,10 @@
     <ClInclude Include="Debug.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="GameManager.h" />
+    <ClInclude Include="PlantCondition.h" />
     <ClInclude Include="Plant.h" />
     <ClInclude Include="PlantAction.h" />
+    <ClInclude Include="Projectile.h" />
     <ClInclude Include="StateMachine.h" />
     <ClInclude Include="Transition.h" />
     <ClInclude Include="Zombie.h" />

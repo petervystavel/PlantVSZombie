@@ -49,6 +49,7 @@ public:
 	void LaunchScene();
 
 	float GetDeltaTime() const;
+	Scene* GetScene() const;
 
 	friend Debug;
 	friend Scene;
@@ -92,11 +93,12 @@ private:
 protected:
 	Scene() = default;
 
-	template<typename T>
-	T* CreateEntity(float x, float y, float radius, const sf::Color& color);
-
 	virtual void HandleInput(const sf::Event& event) = 0;
 	virtual void Update() = 0;
+
+public:
+	template<typename T>
+	T* CreateEntity(float x, float y, float radius, const sf::Color& color);
 
 	int GetWindowWidth() const;
 	int GetWindowHeight() const;

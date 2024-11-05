@@ -6,8 +6,15 @@
 class PlantActionIdle : public Action<Plant>
 {
 public:
-	void OnEnter(Plant* pPlant) override;
-	void OnUpdate(Plant* pPlant) override;
-	void OnExit(Plant* pPlant) override;
+	void Start(Plant* pPlant) override {}
+	void Update(Plant* pPlant) override {}
+	void End(Plant* pPlant) override {}
 };
 
+class PlantActionShooting : public Action<Plant>
+{
+public:
+	void Start(Plant* pPlant) override;
+	void Update(Plant* pPlant) override;
+	void End(Plant* pPlant) override;
+};

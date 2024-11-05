@@ -8,10 +8,14 @@ class Transition
 {
 protected:
     std::vector<Condition<T>*> mConditions;
+	int mTransitionState;
 
 public:
+	Transition(int transitionState) : mTransitionState(transitionState) {}
+
     void AddCondition(Condition<T>* pCondition);
 	bool Try(T* owner);
+	int GetTransitionState() { return mTransitionState; }
 };
 
 template<typename T>
