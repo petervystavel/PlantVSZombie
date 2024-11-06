@@ -34,7 +34,13 @@ public:
     bool ToDestroy() const;
 	bool IsColliding(Entity* other) const;
 
-	Scene* GetScene() const;
+	template<typename T>
+	T* GetScene() const;
+
+    Scene* GetScene() const;
+
+    template<typename T>
+    T* CreateEntity(float x, float y, float radius, const sf::Color& color);
 
 protected:
     virtual ~Entity() {};
@@ -48,3 +54,5 @@ private:
 
     friend class GameManager;
 };
+
+#include "Entity.inl"

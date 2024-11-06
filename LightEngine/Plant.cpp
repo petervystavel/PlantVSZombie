@@ -1,5 +1,7 @@
 #include "Plant.h"
 
+#include <string>
+
 #include "GameScene.h"
 #include "Projectile.h"
 
@@ -68,41 +70,6 @@ Plant::Plant(float x, float y, float radius, const sf::Color& color) : Entity(x,
 	mStateMachine.SetState(State::Idle);
 }
 
-void Plant::OnAction_TryShoot()
-{
-	mShootTimer += GameManager::Get()->GetDeltaTime();
-
-	if (mShootTimer >= mShootCadence)
-	{
-		mShootTimer -= mShootCadence;
-
-		Scene* pScene = GetScene();
-
-		Projectile* pProjectile = pScene->CreateEntity<Projectile>(GetPosition().x, GetPosition().y, 5.0f, sf::Color::Red);
-		
-		pProjectile->SetSpeed(100.0f);
-		pProjectile->SetDirection(1.0f, 0.0f);
-
-		mAmmo--;
-	}
-}
-
-void Plant::OnAction_Reload()
-{
-	mReloadTimer += GameManager::Get()->GetDeltaTime();
-
-	if (mReloadTimer >= mReloadDuration)
-	{
-		mReloadTimer = 0.f;
-		mAmmo = mMaxAmmo;
-	}
-}
-
-void Plant::ClearShootTimer()
-{
-	mShootTimer = mShootCadence;
-}
-
 const char* Plant::GetStateName(State state) const
 {
 	switch (state)
@@ -119,7 +86,10 @@ void Plant::OnUpdate()
 	const sf::Vector2f& position = GetPosition();
 	const char* stateName = GetStateName((Plant::State)mStateMachine.GetCurrentState());
 
+	std::string ammo = std::to_string(mAmmo) + "/" + std::to_string(mMaxAmmo);
+
 	Debug::DrawText(position.x, position.y - 50, stateName, 0.5f, 0.5f, sf::Color::Red);
+	Debug::DrawText(position.x, position.y, ammo, 0.5f, 0.5f, sf::Color::Blue);
 
 	mStateMachine.Update();
 }

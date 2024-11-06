@@ -28,6 +28,7 @@
     <ClCompile Include="Plant.cpp" />
     <ClCompile Include="PlantAction.cpp" />
     <ClCompile Include="Projectile.cpp" />
+    <ClCompile Include="Scene.cpp" />
     <ClCompile Include="StateMachine.cpp" />
     <ClCompile Include="Transition.cpp" />
     <ClCompile Include="Zombie.cpp" />
@@ -45,11 +46,17 @@
     <ClInclude Include="Plant.h" />
     <ClInclude Include="PlantAction.h" />
     <ClInclude Include="Projectile.h" />
+    <ClInclude Include="Scene.h" />
     <ClInclude Include="StateMachine.h" />
     <ClInclude Include="Transition.h" />
     <ClInclude Include="Zombie.h" />
     <ClInclude Include="GameScene.h" />
     <ClInclude Include="Utils.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Entity.inl" />
+    <None Include="GameManager.inl" />
+    <None Include="Scene.inl" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

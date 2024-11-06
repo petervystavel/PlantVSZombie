@@ -4,22 +4,18 @@
 
 bool PlantCondition_ZombieOnLane::Test(Plant* pPlant)
 {
-	Scene* pScene = pPlant->GetScene();
-	GameScene* pGameScene = dynamic_cast<GameScene*>(pScene);
-	_ASSERT(pGameScene != nullptr);
-
-	bool condition = pGameScene->IsZombieInArea(pPlant->GetAreaIndex());
+	GameScene* pScene = pPlant->GetScene<GameScene>();
+	
+	bool condition = pScene->IsZombieInArea(pPlant->GetAreaIndex());
 
 	return condition;
 }
 
 bool PlantCondition_NoZombieOnLane::Test(Plant* pPlant)
 {
-	Scene* pScene = pPlant->GetScene();
-	GameScene* pGameScene = dynamic_cast<GameScene*>(pScene);
-	_ASSERT(pGameScene != nullptr);
+	GameScene* pScene = pPlant->GetScene<GameScene>();
 
-	bool condition = pGameScene->IsZombieInArea(pPlant->GetAreaIndex());
+	bool condition = pScene->IsZombieInArea(pPlant->GetAreaIndex());
 
 	return condition == false;
 }

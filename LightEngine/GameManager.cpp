@@ -146,14 +146,3 @@ void GameManager::Draw()
 
 	mpWindow->display();
 }
-
-
-int Scene::GetWindowWidth() const
-{
-	return mpGameManager->mWindowWidth;
-}
-
-int Scene::GetWindowHeight() const
-{
-	return mpGameManager->mWindowHeight;
-}

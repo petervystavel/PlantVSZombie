@@ -36,11 +36,10 @@ public:
 
 	void OnUpdate() override;
 	void OnCollision(Entity* pCollidedWith) override;
-	
-	void OnAction_TryShoot();
-	void OnAction_Reload();
 
-	void ClearShootTimer();
 	int GetAmmo() { return mAmmo; }
 
+	friend class PlantAction_Idle;
+	friend class PlantAction_Reloading;
+	friend class PlantAction_Shooting;
 };

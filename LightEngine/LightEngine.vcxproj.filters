@@ -55,6 +55,9 @@
     <ClCompile Include="PlantCondition.cpp">
       <Filter>Game\PlantStateMachine</Filter>
     </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Entity.h">
@@ -102,5 +105,17 @@
     <ClInclude Include="PlantCondition.h">
       <Filter>Game\PlantStateMachine</Filter>
     </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Scene.inl">
+      <Filter>Engine</Filter>
+    </None>
+    <None Include="GameManager.inl">
+      <Filter>Engine</Filter>
+    </None>
+    <None Include="Entity.inl" />
   </ItemGroup>
 </Project>

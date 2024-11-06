@@ -39,9 +39,6 @@ private:
 	void Draw();
 	void SetDeltaTime(float deltaTime) { mDeltaTime = deltaTime; }
 
-	template<typename T>
-	T* CreateEntity(float x, float y, float radius, const sf::Color& color);
-
 	sf::RenderWindow* GetWindow() const { return mpWindow; }
 
 public:
@@ -61,60 +58,4 @@ public:
 	friend Scene;
 };
 
-template<typename T>
-void GameManager::LaunchScene()
-{
-	static_assert(std::is_base_of<Scene, T>::value, "T must be derived from Scene");
-	_ASSERT(mpScene == nullptr);
-
-	T* newScene = new T();
-	newScene->SetGameManager(this);
-	newScene->Initialize();
-
-	mpScene = newScene;
-
-	Run();
-}
-
-template<typename T>
-T* GameManager::CreateEntity(float x, float y, float radius, const sf::Color& color)
-{
-	static_assert(std::is_base_of<Entity, T>::value, "T must be derived from Entity");
-
-	T* newEntity = new T(x, y, radius, color);
-	mEntities.push_back(newEntity);
-
-	return newEntity;
-}
-
-class Scene
-{
-private:
-	GameManager* mpGameManager;
-
-private:
-	void SetGameManager(GameManager* pGameManager) { mpGameManager = pGameManager; }
-	virtual void Initialize() = 0;
-
-protected:
-	Scene() = default;
-
-	virtual void HandleInput(const sf::Event& event) = 0;
-	virtual void Update() = 0;
-
-public:
-	template<typename T>
-	T* CreateEntity(float x, float y, float radius, const sf::Color& color);
-
-	int GetWindowWidth() const;
-	int GetWindowHeight() const;
-
-	friend GameManager;
-};
-
-template<typename T>
-T* Scene::CreateEntity(float x, float y, float radius, const sf::Color& color)
-{
-	return mpGameManager->CreateEntity<T>(x, y, radius, color);
-}
-
+#include "GameManager.inl"

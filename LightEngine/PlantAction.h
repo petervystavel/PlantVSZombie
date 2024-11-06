@@ -25,4 +25,6 @@ public:
 	void Start(Plant* pPlant) override;
 	void Update(Plant* pPlant) override;
 	void End(Plant* pPlant) override {};
+
+	friend Plant;
 };

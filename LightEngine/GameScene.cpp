@@ -1,6 +1,8 @@
 #include "GameScene.h"
 
 #include "GameManager.h"
+#include "Scene.h"
+
 #include "Plant.h"
 #include "Zombie.h"
 #include "Debug.h"
