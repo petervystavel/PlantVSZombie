@@ -2,7 +2,7 @@
 
 #include "GameScene.h"
 
-bool PlantShootCondition::Test(Plant* pPlant)
+bool PlantCondition_ZombieOnLane::Test(Plant* pPlant)
 {
 	Scene* pScene = pPlant->GetScene();
 	GameScene* pGameScene = dynamic_cast<GameScene*>(pScene);
@@ -13,7 +13,7 @@ bool PlantShootCondition::Test(Plant* pPlant)
 	return condition;
 }
 
-bool PlantIdleCondition::Test(Plant* pPlant)
+bool PlantCondition_NoZombieOnLane::Test(Plant* pPlant)
 {
 	Scene* pScene = pPlant->GetScene();
 	GameScene* pGameScene = dynamic_cast<GameScene*>(pScene);
@@ -22,4 +22,19 @@ bool PlantIdleCondition::Test(Plant* pPlant)
 	bool condition = pGameScene->IsZombieInArea(pPlant->GetAreaIndex());
 
 	return condition == false;
+}
+
+bool PlantCondition_NoAmmo::Test(Plant* pPlant)
+{
+	return pPlant->GetAmmo() == 0;
+}
+
+bool PlantCondition_FullAmmo::Test(Plant* pPlant)
+{
+	return pPlant->GetAmmo() == 6;
+}
+
+bool PlantCondition_NoFullAmmo::Test(Plant* pPlant)
+{
+	return pPlant->GetAmmo() < 6;
 }

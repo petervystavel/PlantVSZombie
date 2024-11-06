@@ -1,16 +1,25 @@
 #include "PlantAction.h"
 #include "Plant.h"
 
-void PlantActionShooting::Start(Plant* pPlant)
+void PlantAction_Shooting::Start(Plant* pPlant)
 {
 	pPlant->ClearShootTimer();
 }
 
-void PlantActionShooting::Update(Plant* pPlant)
+void PlantAction_Shooting::Update(Plant* pPlant)
 {
-	pPlant->TryShoot();
+	pPlant->OnAction_TryShoot();
 }
 
-void PlantActionShooting::End(Plant* pPlant)
+void PlantAction_Shooting::End(Plant* pPlant)
 {
+}
+
+void PlantAction_Reloading::Start(Plant* pPlant)
+{
+}
+
+void PlantAction_Reloading::Update(Plant* pPlant)
+{
+	pPlant->OnAction_Reload();
 }

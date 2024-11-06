@@ -17,6 +17,8 @@ public:
 
 	void Update();
 	void SetState(int state);
+	int GetCurrentState() const { return mCurrentState; }
+
 	Behaviour<T>* CreateBehaviour(int state);
 };
 

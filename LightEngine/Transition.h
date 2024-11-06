@@ -29,9 +29,9 @@ bool Transition<T>::Try(T* owner)
 {
 	for (const auto& c : mConditions)
 	{
-		if (c->Test(owner))
-			return true;
+		if (c->Test(owner) == false)
+			return false;
 	}
 
-	return false;
+	return true;
 }

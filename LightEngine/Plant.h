@@ -16,8 +16,15 @@ class Plant : public Entity
 		Count
 	};
 
+	int mAmmo;
+	int mMaxAmmo = 6;
+
 	float mShootCadence = 1.0f;
 	float mShootTimer = 0.0f;
+	
+	float mReloadDuration = 2.0f;
+	float mReloadTimer = 0.0f;
+	
 	int mAreaIndex;
 
 public:
@@ -25,10 +32,15 @@ public:
 
 	void SetAreaIndex(int index) { mAreaIndex = index; }
 	int GetAreaIndex() { return mAreaIndex; }
+	const char* GetStateName(State state) const;
 
 	void OnUpdate() override;
 	void OnCollision(Entity* pCollidedWith) override;
 	
-	void TryShoot();
+	void OnAction_TryShoot();
+	void OnAction_Reload();
+
 	void ClearShootTimer();
+	int GetAmmo() { return mAmmo; }
+
 };

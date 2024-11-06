@@ -3,7 +3,7 @@
 #include "Action.h"
 #include "Plant.h"
 
-class PlantActionIdle : public Action<Plant>
+class PlantAction_Idle : public Action<Plant>
 {
 public:
 	void Start(Plant* pPlant) override {}
@@ -11,10 +11,18 @@ public:
 	void End(Plant* pPlant) override {}
 };
 
-class PlantActionShooting : public Action<Plant>
+class PlantAction_Shooting : public Action<Plant>
 {
 public:
 	void Start(Plant* pPlant) override;
 	void Update(Plant* pPlant) override;
 	void End(Plant* pPlant) override;
+};
+
+class PlantAction_Reloading : public Action<Plant>
+{
+public:
+	void Start(Plant* pPlant) override;
+	void Update(Plant* pPlant) override;
+	void End(Plant* pPlant) override {};
 };

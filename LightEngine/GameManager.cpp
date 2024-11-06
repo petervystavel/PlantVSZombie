@@ -54,8 +54,7 @@ void GameManager::Run()
 		CreateWindow(1280, 720, "Default window");
 	}
 
-	sf::Font font;
-	bool fontLoaded = font.loadFromFile("Hack-Regular.ttf");
+	bool fontLoaded = mFont.loadFromFile("Hack-Regular.ttf");
 	_ASSERT(fontLoaded);
 
 	_ASSERT(mpScene != nullptr);
@@ -65,19 +64,25 @@ void GameManager::Run()
 	{
 		SetDeltaTime(clock.restart().asSeconds());
 
-		sf::Event event;
-		while (mpWindow->pollEvent(event))
-		{
-			if (event.type == sf::Event::Closed)
-			{
-				mpWindow->close();
-			}
-
-			mpScene->HandleInput(event);
-		}
+		HandleInput();
 
 		Update();
+		
 		Draw();
+	}
+}
+
+void GameManager::HandleInput()
+{
+	sf::Event event;
+	while (mpWindow->pollEvent(event))
+	{
+		if (event.type == sf::Event::Closed)
+		{
+			mpWindow->close();
+		}
+
+		mpScene->HandleInput(event);
 	}
 }
 
@@ -137,42 +142,11 @@ void GameManager::Draw()
 		mpWindow->draw(*entity->GetShape());
 	}
 	
-	std::vector<Line>& lines = Debug::GetLines();
-	for (Line& line : lines)
-	{
-		sf::Vertex vertices[2] = { line.start, line.end };
-		mpWindow->draw(vertices, 2, sf::Lines);
-	}
-
-	Debug::ClearLines();
+	Debug::Get()->Draw(mpWindow);
 
 	mpWindow->display();
 }
 
-void GameManager::SetDeltaTime(float deltaTime)
-{
-	mDeltaTime = deltaTime;
-}
-
-float GameManager::GetDeltaTime() const
-{
-	return mDeltaTime;
-}
-
-Scene* GameManager::GetScene() const
-{
-	return mpScene;
-}
-
-sf::RenderWindow* GameManager::GetWindow() const
-{
-	return mpWindow;
-}
-
-void Scene::SetGameManager(GameManager* pGameManager) 
-{
-	mpGameManager = pGameManager;
-}
 
 int Scene::GetWindowWidth() const
 {

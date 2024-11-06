@@ -1,7 +1,9 @@
 #pragma once
 
 #include <list>
+
 #include <SFML/Graphics/Color.hpp>
+#include <SFML/Graphics/Text.hpp>
 
 class Entity;
 class Scene;
@@ -19,6 +21,8 @@ class GameManager
 	std::list<Entity*> mEntitiesToDestroy;
 
 	sf::RenderWindow* mpWindow;
+	sf::Font mFont;
+
 	Scene* mpScene;
 
 	float mDeltaTime;
@@ -30,14 +34,15 @@ private:
 	GameManager();
 
 	void Run();
+	void HandleInput();
 	void Update();
 	void Draw();
-	void SetDeltaTime(float deltaTime);
+	void SetDeltaTime(float deltaTime) { mDeltaTime = deltaTime; }
 
 	template<typename T>
 	T* CreateEntity(float x, float y, float radius, const sf::Color& color);
 
-	sf::RenderWindow* GetWindow() const;
+	sf::RenderWindow* GetWindow() const { return mpWindow; }
 
 public:
 	~GameManager();
@@ -48,8 +53,9 @@ public:
 	template<typename T>
 	void LaunchScene();
 
-	float GetDeltaTime() const;
-	Scene* GetScene() const;
+	float GetDeltaTime() const { return mDeltaTime; }
+	Scene* GetScene() const { return mpScene; }
+	sf::Font& GetFont() { return mFont; };
 
 	friend Debug;
 	friend Scene;
@@ -87,7 +93,7 @@ private:
 	GameManager* mpGameManager;
 
 private:
-	void SetGameManager(GameManager* pGameManager);
+	void SetGameManager(GameManager* pGameManager) { mpGameManager = pGameManager; }
 	virtual void Initialize() = 0;
 
 protected:
