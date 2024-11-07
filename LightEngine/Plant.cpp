@@ -10,7 +10,7 @@
 
 #include "Debug.h"
 
-Plant::Plant(float x, float y, float radius, const sf::Color& color) : Entity(x, y, radius, color)
+Plant::Plant(float radius, const sf::Color& color) : Entity(radius, color)
 	, mStateMachine(this, State::Count)
 {
 	mAreaIndex = -1;
@@ -26,14 +26,19 @@ Plant::Plant(float x, float y, float radius, const sf::Color& color) : Entity(x,
 		//-> SHOOTING
 		{
 			auto transition = pIdle->CreateTransition(State::Shooting);
-			transition->AddCondition(new PlantCondition_ZombieOnLane());
+			
+			auto condition = transition->AddCondition<PlantCondition_ZombieOnLane>();
 		}
 
 		//-> RELOADING
 		{
 			auto transition = pIdle->CreateTransition(State::Reloading);
-			transition->AddCondition(new PlantCondition_NoFullAmmo());
-			transition->AddCondition(new PlantCondition_NoZombieOnLane());
+
+			auto condition1 = transition->AddCondition<PlantCondition_FullAmmo>();
+			condition1->expected = false;
+
+			auto condition2 = transition->AddCondition<PlantCondition_ZombieOnLane>();
+			condition2->expected = false;
 		}
 	}
 
@@ -45,13 +50,16 @@ Plant::Plant(float x, float y, float radius, const sf::Color& color) : Entity(x,
 		//-> IDLE
 		{
 			auto transition = pShooting->CreateTransition(State::Idle);
-			transition->AddCondition(new PlantCondition_NoZombieOnLane());
+			
+			auto condition = transition->AddCondition<PlantCondition_ZombieOnLane>();
+			condition->expected = false;
 		}
 
 		//-> RELOADING
 		{
 			auto transition = pShooting->CreateTransition(State::Reloading);
-			transition->AddCondition(new PlantCondition_NoAmmo());
+			
+			transition->AddCondition<PlantCondition_NoAmmo>();
 		}
 	}
 
@@ -63,7 +71,8 @@ Plant::Plant(float x, float y, float radius, const sf::Color& color) : Entity(x,
 		//-> IDLE
 		{
 			auto transition = pShooting->CreateTransition(State::Idle);
-			transition->AddCondition(new PlantCondition_FullAmmo());
+			
+			auto condition = transition->AddCondition<PlantCondition_FullAmmo>();
 		}
 	}
 
@@ -83,7 +92,7 @@ const char* Plant::GetStateName(State state) const
 
 void Plant::OnUpdate()
 {
-	const sf::Vector2f& position = GetPosition();
+	const sf::Vector2f& position = GetPosition(0.5f, 0.5f);
 	const char* stateName = GetStateName((Plant::State)mStateMachine.GetCurrentState());
 
 	std::string ammo = std::to_string(mAmmo) + "/" + std::to_string(mMaxAmmo);

@@ -2,15 +2,23 @@
 
 #include "GameScene.h"
 
-Projectile::Projectile(float x, float y, float radius, const sf::Color& color)
-	: Entity(x, y, radius, color)
+Projectile::Projectile(float radius, const sf::Color& color)
+	: Entity(radius, color)
 {
 	SetTag(GameScene::Tag::PROJECTILE);
+
+	SetSpeed(100.0f);
+	SetDirection(1.0f, 0.0f);
 }
 
 void Projectile::OnUpdate()
 {
-	//#TODO
+	sf::Vector2f position = GetPosition(0.f, 0.f);
+
+	int width = GetScene()->GetWindowWidth();
+
+	if (position.x > width)
+		Destroy();
 }
 
 void Projectile::OnCollision(Entity* pCollidedWith)

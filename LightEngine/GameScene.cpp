@@ -1,32 +1,28 @@
 #include "GameScene.h"
 
-#include "GameManager.h"
-#include "Scene.h"
-
 #include "Plant.h"
 #include "Zombie.h"
 #include "Debug.h"
-
-#include <SFML/Window/Event.hpp>
 
 void GameScene::Initialize()
 {
 	int width = GetWindowWidth();
 	int height = GetWindowHeight();
 
-	int plantRadius = 50;
-	int plantHeight = plantRadius * 2;
-	int spaceBetweenPlants = 20;
+	float plantRadius = 50.f;
+	float plantHeight = plantRadius * 2;
+	float spaceBetweenPlants = 20;
 
-	int totalHeight = (spaceBetweenPlants * 2) + (plantHeight * 3);
-	int spacing = height - totalHeight;
+	float totalHeight = (spaceBetweenPlants * 2) + (plantHeight * 3);
+	float spacing = height - totalHeight;
 
-	int startX = plantRadius * 2;
-	int startY = plantRadius + (spacing / 2);
+	float startX = plantRadius * 2;
+	float startY = plantRadius + (spacing / 2);
 
 	for (int i = 0; i < 3; i++) 
 	{
-		mpPlants[i] = CreateEntity<Plant>(startX, startY, plantRadius, sf::Color::Green);
+		mpPlants[i] = CreateEntity<Plant>(plantRadius, sf::Color::Green);
+		mpPlants[i]->SetPosition(startX, startY, 0.5f, 0.5f);
 		mpPlants[i]->SetAreaIndex(i);
 
 		int xMin = startX + plantHeight;
@@ -91,11 +87,15 @@ void GameScene::HandleInput(const sf::Event& event)
 
 	int y = clickedArea->yMin + (clickedArea->yMax - clickedArea->yMin) / 2;
 
-	Zombie* pZombie = CreateEntity<Zombie>(event.mouseButton.x, y, 25, sf::Color::Red);
+	Zombie* pZombie = CreateEntity<Zombie>(25, sf::Color::Red);
+	pZombie->SetPosition(event.mouseButton.x, y, 0.5f, 0.5f);
+
 	mZombies[index].push_back(pZombie);
 }
 
 bool GameScene::IsZombieInArea(int index) const
 {
+	_ASSERT(index >= 0 && index < 3);
+
 	return mZombies[index].size() > 0;
 }

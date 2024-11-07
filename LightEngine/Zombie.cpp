@@ -4,7 +4,7 @@
 
 #include <iostream>
 
-Zombie::Zombie(float x, float y, float radius, const sf::Color& color) : Entity(x, y, radius, color)
+Zombie::Zombie(float radius, const sf::Color& color) : Entity(radius, color)
 {
 	SetTag(GameScene::Tag::ZOMBIE);
 
@@ -15,6 +15,11 @@ Zombie::Zombie(float x, float y, float radius, const sf::Color& color) : Entity(
 void Zombie::OnCollision(Entity* pCollidedWith)
 {
 	if (pCollidedWith->IsTag(GameScene::Tag::PROJECTILE))
+	{
+		Destroy();
+	}
+
+	if (pCollidedWith->IsTag(GameScene::Tag::PLANT))
 	{
 		Destroy();
 	}

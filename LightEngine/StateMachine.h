@@ -14,6 +14,7 @@ class StateMachine
 
 public:
 	StateMachine(T* owner, int stateCount);
+	~StateMachine();
 
 	void Update();
 	void SetState(int state);
@@ -29,6 +30,14 @@ StateMachine<T>::StateMachine(T* owner, int stateCount)
 	mCurrentState = -1;
 	mBehaviours.resize(stateCount);
 }
+
+template<typename T>
+StateMachine<T>::~StateMachine()
+{
+	for (Behaviour<T>* pBehaviour : mBehaviours)
+		delete pBehaviour;
+}
+
 
 template<typename T>
 void StateMachine<T>::SetState(int state)

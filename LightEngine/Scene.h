@@ -2,11 +2,8 @@
 
 class GameManager;
 
-namespace sf
-{
-	class Event;
-	class Color;
-}
+#include <SFML/Window/Event.hpp>
+#include <SFML/Graphics/Color.hpp>
 
 class Scene
 {
@@ -25,7 +22,7 @@ protected:
 
 public:
 	template<typename T>
-	T* CreateEntity(float x, float y, float radius, const sf::Color& color);
+	T* CreateEntity(float radius, const sf::Color& color);
 
 	int GetWindowWidth() const;
 	int GetWindowHeight() const;

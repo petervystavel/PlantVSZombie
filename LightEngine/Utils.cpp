@@ -4,21 +4,23 @@
 
 namespace Utils 
 {
-    sf::Vector2f Vector2Normalize(const sf::Vector2f& vector)
+    bool Normalize(sf::Vector2f& vector)
     {
         float magnitude = std::sqrt(vector.x * vector.x + vector.y * vector.y);
 
-        if (magnitude == 0) {
-            return { 0, 0 };
-        }
+		if (magnitude != 0)
+		{
+			vector.x /= magnitude;
+			vector.y /= magnitude;
+		
+			return true;
+		}
 
-        sf::Vector2f normalized = { vector.x / magnitude, vector.y / magnitude };
-
-        return normalized;
+		return false;
     }
 
-	float GetDeltaTime()
+	bool IsCollinear(const sf::Vector2f& a, const sf::Vector2f& b)
 	{
-		return 0.016f;
+		return a.x * b.y - a.y * b.x == 0;
 	}
 }

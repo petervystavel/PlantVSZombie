@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Behaviour.cpp" />
+    <ClCompile Include="Behaviour.inl" />
     <ClCompile Include="Debug.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="GameManager.cpp" />
@@ -28,6 +29,7 @@
     <ClCompile Include="Plant.cpp" />
     <ClCompile Include="PlantAction.cpp" />
     <ClCompile Include="Projectile.cpp" />
+    <ClCompile Include="SampleScene.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="StateMachine.cpp" />
     <ClCompile Include="Transition.cpp" />
@@ -46,6 +48,7 @@
     <ClInclude Include="Plant.h" />
     <ClInclude Include="PlantAction.h" />
     <ClInclude Include="Projectile.h" />
+    <ClInclude Include="SampleScene.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="StateMachine.h" />
     <ClInclude Include="Transition.h" />
@@ -54,9 +57,11 @@
     <ClInclude Include="Utils.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Condition.inl" />
     <None Include="Entity.inl" />
     <None Include="GameManager.inl" />
     <None Include="Scene.inl" />
+    <None Include="Transition.inl" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

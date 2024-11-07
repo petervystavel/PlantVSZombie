@@ -13,17 +13,22 @@ class Scene;
 
 class Entity
 {
+private:
+	bool HasTarget() const { return mTarget.x != -1.f && mTarget.y != -1.f; }
+
 protected:
     sf::CircleShape mShape;
     sf::Vector2f mDirection;
+	sf::Vector2f mTarget;
+
     float mSpeed;
     bool mToDestroy;
     int mTag;
 
 public:
     void GoToPosition(float x, float y);
-    void SetPosition(float x, float y);
-    const sf::Vector2f& GetPosition() const;
+    void SetPosition(float x, float y, float ratioX = 0.f, float ratioY = 0.f);
+    sf::Vector2f GetPosition(float ratioX = 0.f, float ratioY = 0.f) const;
     void SetSpeed(float speed);
 	void SetDirection(float x, float y);
 	void SetTag(int tag);
@@ -39,18 +44,16 @@ public:
 
     Scene* GetScene() const;
 
-    template<typename T>
-    T* CreateEntity(float x, float y, float radius, const sf::Color& color);
-
 protected:
     virtual ~Entity() {};
-    Entity(float x, float y, float radius, const sf::Color& color);
+    Entity(float radius, const sf::Color& color);
 
     virtual void OnUpdate() = 0;
     virtual void OnCollision(Entity* collidedWith) = 0;
 	
 private:
     void Update();
+	void CheckTarget();
 
     friend class GameManager;
 };

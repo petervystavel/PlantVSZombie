@@ -28,6 +28,13 @@ void Debug::Draw(sf::RenderWindow* pRenderWindow)
 	}
 
 	mTexts.clear();
+
+	for (sf::CircleShape& circle : mCircles)
+	{
+		pRenderWindow->draw(circle);
+	}
+
+	mCircles.clear();
 }
 
 void Debug::DrawLine(float x1, float y1, float x2, float y2, const sf::Color& color)
@@ -49,6 +56,17 @@ void Debug::DrawRectangle(float x, float y, float width, float height, const sf:
 	DrawLine(x + width, y, x + width, y + height, color);
 	DrawLine(x + width, y + height, x, y + height, color);
 	DrawLine(x, y + height, x, y, color);
+}
+
+void Debug::DrawCircle(float x, float y, float radius, const sf::Color& color)
+{
+	sf::CircleShape circle;
+
+	circle.setRadius(radius);
+	circle.setFillColor(color);
+	circle.setPosition(x - radius, y - radius);
+
+	Debug::Get()->mCircles.push_back(circle);
 }
 
 void Debug::DrawText(float x, float y, const std::string& text, const sf::Color& color)
@@ -73,14 +91,4 @@ void Debug::DrawText(float x, float y, const std::string& text, float ratioX, fl
 	sfText.setOrigin(bounds.width * ratioX, bounds.height * ratioY);
 
 	Debug::Get()->mTexts.push_back(sfText);
-}
-
-std::vector<Line>& Debug::GetLines()
-{
-	return Debug::mLines;
-}
-
-void Debug::ClearLines()
-{
-	mLines.clear();
 }

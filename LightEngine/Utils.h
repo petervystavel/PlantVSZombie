@@ -4,5 +4,6 @@
 
 namespace Utils
 {
-	sf::Vector2f Vector2Normalize(const sf::Vector2f& vector);
+	bool Normalize(sf::Vector2f& vector);
+	bool IsCollinear(const sf::Vector2f& a, const sf::Vector2f& b);
 }

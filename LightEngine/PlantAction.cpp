@@ -21,12 +21,10 @@ void PlantAction_Shooting::Update(Plant* pPlant)
 
 	GameScene* pScene = pPlant->GetScene<GameScene>();
 
-	const sf::Vector2f& position = pPlant->GetPosition();
+	const sf::Vector2f& position = pPlant->GetPosition(0.5f, 0.5f);
 
-	Projectile* pProjectile = pScene->CreateEntity<Projectile>(position.x, position.y, 5.0f, sf::Color::Red);
-
-	pProjectile->SetSpeed(100.0f);
-	pProjectile->SetDirection(1.0f, 0.0f);
+	Projectile* pProjectile = pScene->CreateEntity<Projectile>(5.0f, sf::Color::Red);
+	pProjectile->SetPosition(position.x, position.y, 0.5f, 0.5f);
 
 	pPlant->mAmmo--;
 }

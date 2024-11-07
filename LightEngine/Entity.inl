@@ -11,11 +11,3 @@ T* Entity::GetScene() const
 
 	return pScene;
 }
-
-template<typename T>
-T* Entity::CreateEntity(float x, float y, float radius, const sf::Color& color)
-{
-	Scene* pScene = GetScene();
-
-	return pScene->CreateEntity<T>(x, y, radius, color);
-}

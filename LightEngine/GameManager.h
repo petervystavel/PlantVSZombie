@@ -34,9 +34,11 @@ private:
 	GameManager();
 
 	void Run();
+	
 	void HandleInput();
 	void Update();
 	void Draw();
+
 	void SetDeltaTime(float deltaTime) { mDeltaTime = deltaTime; }
 
 	sf::RenderWindow* GetWindow() const { return mpWindow; }

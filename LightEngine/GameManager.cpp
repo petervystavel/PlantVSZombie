@@ -19,9 +19,9 @@ GameManager::GameManager()
 
 GameManager* GameManager::Get()
 {
-	static GameManager* mInstance = new GameManager();
+	static GameManager mInstance;
 
-	return mInstance;
+	return &mInstance;
 }
 
 GameManager::~GameManager()
@@ -54,6 +54,7 @@ void GameManager::Run()
 		CreateWindow(1280, 720, "Default window");
 	}
 
+	//#TODO : Load somewhere else
 	bool fontLoaded = mFont.loadFromFile("Hack-Regular.ttf");
 	_ASSERT(fontLoaded);
 
