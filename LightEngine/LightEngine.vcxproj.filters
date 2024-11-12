@@ -58,6 +58,9 @@
     <ClCompile Include="Scene.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
+    <ClCompile Include="Behaviour.inl">
+      <Filter>Engine\StateMachine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Entity.h">
@@ -116,6 +119,14 @@
     <None Include="GameManager.inl">
       <Filter>Engine</Filter>
     </None>
-    <None Include="Entity.inl" />
+    <None Include="Condition.inl">
+      <Filter>Engine\StateMachine</Filter>
+    </None>
+    <None Include="Entity.inl">
+      <Filter>Engine\StateMachine</Filter>
+    </None>
+    <None Include="Transition.inl">
+      <Filter>Engine\StateMachine</Filter>
+    </None>
   </ItemGroup>
 </Project>

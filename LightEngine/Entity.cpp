@@ -17,7 +17,7 @@ Entity::Entity(float radius, const sf::Color& color)
 	mShape.setRadius(radius);
 	mShape.setFillColor(color);
 
-	mTarget = sf::Vector2f(-1.f, -1.f);
+	mHasTarget = false;
 }
 
 void Entity::Destroy()
@@ -65,17 +65,38 @@ sf::Vector2f Entity::GetPosition(float ratioX, float ratioY) const
 	return position;
 }
 
-void Entity::GoToPosition(float x, float y)
+void Entity::GoToDirection(float x, float y, float speed)
 {
-	sf::Vector2f position = GetPosition();
+	if(speed > 0)
+		mSpeed = speed;
+
+	mDirection.x = x;
+	mDirection.y = y;
+
+	bool success = Utils::Normalize(mDirection);
+
+	_ASSERT(success);
+
+	mHasTarget = false;
+}
+
+void Entity::GoToPosition(float x, float y, float speed)
+{
+	if (speed > 0)
+		mSpeed = speed;
+
+	sf::Vector2f position = GetPosition(0.5f, 0.5f);
 
 	float dx = x - position.x;
 	float dy = y - position.y;
 
-	SetDirection(dx, dy);
+	mDirection.x = x;
+	mDirection.y = y;
 
 	mTarget.x = x;
 	mTarget.y = y;
+
+	mHasTarget = true;
 }
 
 void Entity::SetTag(int tag)
@@ -86,23 +107,6 @@ void Entity::SetTag(int tag)
 bool Entity::IsTag(int tag) const
 {
 	return mTag == tag;
-}
-
-void Entity::SetSpeed(float speed)
-{
-	mSpeed = speed;
-}
-
-void Entity::SetDirection(float x, float y)
-{
-	mDirection.x = x;
-	mDirection.y = y;
-
-	bool success = Utils::Normalize(mDirection);
-
-	_ASSERT(success);
-
-	mTarget = sf::Vector2f(-1.f, -1.f);
 }
 
 sf::Shape* Entity::GetShape()
@@ -128,7 +132,7 @@ void Entity::Update()
 
 void Entity::CheckTarget()
 {
-	if (HasTarget())
+	if (mHasTarget == false)
 		return;
 
 	sf::Vector2f position = GetPosition(0.5f, 0.5f);
@@ -138,7 +142,8 @@ void Entity::CheckTarget()
 		return;
 
 	SetPosition(mTarget.x, mTarget.y);
-	mTarget = sf::Vector2f(-1.f, -1.f);
+
+	mHasTarget = false;
 }
 
 Scene* Entity::GetScene() const

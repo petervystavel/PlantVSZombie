@@ -8,8 +8,7 @@ Zombie::Zombie(float radius, const sf::Color& color) : Entity(radius, color)
 {
 	SetTag(GameScene::Tag::ZOMBIE);
 
-	SetSpeed(50);
-	SetDirection(-1, 0);
+	GoToDirection(-1, 0, 50);
 }
 
 void Zombie::OnCollision(Entity* pCollidedWith)

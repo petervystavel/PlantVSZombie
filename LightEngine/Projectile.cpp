@@ -7,8 +7,7 @@ Projectile::Projectile(float radius, const sf::Color& color)
 {
 	SetTag(GameScene::Tag::PROJECTILE);
 
-	SetSpeed(100.0f);
-	SetDirection(1.0f, 0.0f);
+	GoToDirection(1.0f, 0.0f, 100.0f);
 }
 
 void Projectile::OnUpdate()

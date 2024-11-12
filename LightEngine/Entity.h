@@ -13,32 +13,32 @@ class Scene;
 
 class Entity
 {
-private:
-	bool HasTarget() const { return mTarget.x != -1.f && mTarget.y != -1.f; }
-
 protected:
     sf::CircleShape mShape;
     sf::Vector2f mDirection;
 	sf::Vector2f mTarget;
+    bool mHasTarget;
 
     float mSpeed;
     bool mToDestroy;
     int mTag;
 
 public:
-    void GoToPosition(float x, float y);
+	void GoToDirection(float x, float y, float speed);
+    void GoToPosition(float x, float y, float speed);
     void SetPosition(float x, float y, float ratioX = 0.f, float ratioY = 0.f);
-    sf::Vector2f GetPosition(float ratioX = 0.f, float ratioY = 0.f) const;
-    void SetSpeed(float speed);
-	void SetDirection(float x, float y);
-	void SetTag(int tag);
-	bool IsTag(int tag) const;
+	void SetSpeed(float speed) { mSpeed = speed; }
+    void SetTag(int tag);
 
-    sf::Shape* GetShape();
+    sf::Vector2f GetPosition(float ratioX = 0.f, float ratioY = 0.f) const;
+	sf::Shape* GetShape();
+
+    bool IsTag(int tag) const;
+    bool IsColliding(Entity* other) const;
+
     void Destroy();
     bool ToDestroy() const;
-	bool IsColliding(Entity* other) const;
-
+	
 	template<typename T>
 	T* GetScene() const;
 

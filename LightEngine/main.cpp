@@ -4,7 +4,6 @@
 
 #include "GameManager.h"
 #include "GameScene.h"
-#include "SampleScene.h"
 
 #define _CRTDBG_MAP_ALLOC
 #include <cstdlib>
@@ -22,7 +21,7 @@ int main()
 
 	pInstance->CreateWindow(1280, 720, "Plant VS Zombie");
 	
-	pInstance->LaunchScene<SampleScene>();
+	pInstance->LaunchScene<GameScene>();
 
 	return 0;
 }
