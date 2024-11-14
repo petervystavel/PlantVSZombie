@@ -11,7 +11,7 @@ void GameManager::LaunchScene()
 
 	T* newScene = new T();
 	newScene->SetGameManager(this);
-	newScene->Initialize();
+	newScene->OnInitialize();
 
 	mpScene = newScene;
 

@@ -30,18 +30,18 @@ public:
 		PROJECTILE
 	};
 
-	Plant* mpPlants[3];
-	std::list<Zombie*> mZombies[3];
+	int mLaneZombieCount[3] = {0, 0, 0};		
 	AABB mAreas[3];
 
 private:
 	int GetClickedArea(int x, int y) const;
 
 public:
-	void Initialize() override;
-	void HandleInput(const sf::Event& event) override;
-	void Update() override;
+	void OnInitialize() override;
+	void OnEvent(const sf::Event& event) override;
+	void OnUpdate() override;
 
 	bool IsZombieInArea(int index) const;
+	void OnDestroyZombie(int lane);
 };
 

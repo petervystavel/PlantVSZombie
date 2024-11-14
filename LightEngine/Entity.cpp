@@ -17,17 +17,13 @@ Entity::Entity(float radius, const sf::Color& color)
 	mShape.setRadius(radius);
 	mShape.setFillColor(color);
 
-	mHasTarget = false;
+	mTarget.isSet = false;
 }
 
 void Entity::Destroy()
 {
 	mToDestroy = true;
-}
-
-bool Entity::ToDestroy() const
-{
-	return mToDestroy;
+	OnDestroy();
 }
 
 bool Entity::IsColliding(Entity* other) const
@@ -42,6 +38,18 @@ bool Entity::IsColliding(Entity* other) const
 	float sqrRadius = (radius1 + radius2) * (radius1 + radius2);
 
 	return sqrLength < sqrRadius;
+}
+
+bool Entity::IsInside(float x, float y) const
+{
+	sf::Vector2f position = GetPosition(0.5f, 0.5f);
+
+	float dx = x - position.x;
+	float dy = y - position.y;
+
+	float radius = mShape.getRadius();
+
+	return (dx * dx + dy * dy) < (radius * radius);
 }
 
 void Entity::SetPosition(float x, float y, float ratioX, float ratioY)
@@ -65,88 +73,73 @@ sf::Vector2f Entity::GetPosition(float ratioX, float ratioY) const
 	return position;
 }
 
-void Entity::GoToDirection(float x, float y, float speed)
+bool Entity::GoToDirection(int x, int y, float speed)
 {
 	if(speed > 0)
 		mSpeed = speed;
 
-	mDirection.x = x;
-	mDirection.y = y;
+	sf::Vector2f position = GetPosition(0.5f, 0.5f);
+	sf::Vector2f direction = sf::Vector2f(x - position.x, y - position.y);
+	
+	bool success = Utils::Normalize(direction);
+	if (success == false)
+		return false;
 
-	bool success = Utils::Normalize(mDirection);
+	mDirection = direction;
 
-	_ASSERT(success);
-
-	mHasTarget = false;
+	return true;
 }
 
-void Entity::GoToPosition(float x, float y, float speed)
+bool Entity::GoToPosition(int x, int y, float speed)
+{
+	if (GoToDirection(x, y, speed) == false)
+		return false;
+
+	sf::Vector2f position = GetPosition(0.5f, 0.5f);
+
+	mTarget.position = { x, y };
+	mTarget.distance = Utils::GetDistance(position.x, position.y, x, y);
+	mTarget.isSet = true;
+
+	return true;
+}
+
+void Entity::SetDirection(float x, float y, float speed)
 {
 	if (speed > 0)
 		mSpeed = speed;
 
-	sf::Vector2f position = GetPosition(0.5f, 0.5f);
-
-	float dx = x - position.x;
-	float dy = y - position.y;
-
-	mDirection.x = x;
-	mDirection.y = y;
-
-	mTarget.x = x;
-	mTarget.y = y;
-
-	mHasTarget = true;
-}
-
-void Entity::SetTag(int tag)
-{
-	mTag = tag;
-}
-
-bool Entity::IsTag(int tag) const
-{
-	return mTag == tag;
-}
-
-sf::Shape* Entity::GetShape()
-{
-	return &mShape;
+	mDirection = sf::Vector2f(x, y);
 }
 
 void Entity::Update()
 {
-	OnUpdate();
-
-	float dt = GameManager::Get()->GetDeltaTime();
-
-	sf::Vector2f translation;
-
-	translation.x += dt * mSpeed * mDirection.x;
-	translation.y += dt * mSpeed * mDirection.y;
-
+	float dt = GetDeltaTime();
+	float distance = dt * mSpeed;
+	sf::Vector2f translation = distance * mDirection;
 	mShape.move(translation);
 
-	CheckTarget();
-}
+	if (mTarget.isSet) 
+	{
+		mTarget.distance -= distance;
 
-void Entity::CheckTarget()
-{
-	if (mHasTarget == false)
-		return;
+		if (mTarget.distance <= 0.f)
+		{
+			SetPosition(mTarget.position.x, mTarget.position.y, 0.5f, 0.5f);
+			mDirection = sf::Vector2f(0.f, 0.f);
+			mTarget.isSet = false;
+		}
+	}
 
-	sf::Vector2f position = GetPosition(0.5f, 0.5f);
-	sf::Vector2f direction = mTarget - position;
-
-	if (Utils::IsCollinear(direction, mDirection))
-		return;
-
-	SetPosition(mTarget.x, mTarget.y);
-
-	mHasTarget = false;
+	OnUpdate();
 }
 
 Scene* Entity::GetScene() const
 {
 	return GameManager::Get()->GetScene();
+}
+
+float Entity::GetDeltaTime() const
+{
+	return GameManager::Get()->GetDeltaTime();
 }

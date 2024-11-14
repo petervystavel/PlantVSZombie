@@ -83,13 +83,13 @@ void GameManager::HandleInput()
 			mpWindow->close();
 		}
 
-		mpScene->HandleInput(event);
+		mpScene->OnEvent(event);
 	}
 }
 
 void GameManager::Update()
 {
-	mpScene->Update();
+	mpScene->OnUpdate();
 
     //Update
     for (auto it = mEntities.begin(); it != mEntities.end(); )
@@ -132,6 +132,13 @@ void GameManager::Update()
 	}
 
     mEntitiesToDestroy.clear();
+
+	for (auto it = mEntitiesToAdd.begin(); it != mEntitiesToAdd.end(); ++it)
+	{
+		mEntities.push_back(*it);
+	}
+
+	mEntitiesToAdd.clear();
 }
 
 void GameManager::Draw()

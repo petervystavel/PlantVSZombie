@@ -33,11 +33,11 @@ public:
 	void SetAreaIndex(int index) { mAreaIndex = index; }
 	int GetAreaIndex() { return mAreaIndex; }
 	const char* GetStateName(State state) const;
+	int GetAmmo() { return mAmmo; }
 
+protected:
 	void OnUpdate() override;
 	void OnCollision(Entity* pCollidedWith) override;
-
-	int GetAmmo() { return mAmmo; }
 
 	friend class PlantAction_Idle;
 	friend class PlantAction_Reloading;

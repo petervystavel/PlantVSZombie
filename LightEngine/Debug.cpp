@@ -8,9 +8,9 @@
 
 Debug* Debug::Get()
 {
-	static Debug* mInstance = new Debug();
+	static Debug mInstance;
 
-	return mInstance;
+	return &mInstance;
 }
 
 void Debug::Draw(sf::RenderWindow* pRenderWindow)

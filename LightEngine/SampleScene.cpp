@@ -1,25 +1,53 @@
 #include "SampleScene.h"
 
-#include "Zombie.h"
+#include "DummyEntity.h"
 
 #include "Debug.h"
 
-void SampleScene::Initialize()
+void SampleScene::OnInitialize()
 {
-	mpZombie = CreateEntity<Zombie>(100, sf::Color::Red);
+	pEntity1 = CreateEntity<DummyEntity>(100, sf::Color::Red);
+	pEntity1->SetPosition(100, 100);
+
+	pEntity2 = CreateEntity<DummyEntity>(50, sf::Color::Green);
+	pEntity2->SetPosition(500, 500);
+
+	pEntitySelected = nullptr;
 }
 
-void SampleScene::HandleInput(const sf::Event& event)
+void SampleScene::OnEvent(const sf::Event& event)
 {
 	if (event.type != sf::Event::EventType::MouseButtonPressed)
 		return;
 
-	mPosition = { (float) event.mouseButton.x, (float) event.mouseButton.y };
+	if (event.mouseButton.button == sf::Mouse::Button::Right)
+	{
+		TrySetSelectedEntity(pEntity1, event.mouseButton.x, event.mouseButton.y);
+		TrySetSelectedEntity(pEntity2, event.mouseButton.x, event.mouseButton.y);
+	}
 
-	mpZombie->GoToPosition(mPosition.x, mPosition.y);
+	if (event.mouseButton.button == sf::Mouse::Button::Left)
+	{
+		if (pEntitySelected != nullptr) 
+		{
+			pEntitySelected->GoToPosition(event.mouseButton.x, event.mouseButton.y, 100.f);
+		}
+	}
 }
 
-void SampleScene::Update()
+void SampleScene::TrySetSelectedEntity(DummyEntity* pEntity, int x, int y)
 {
-	Debug::DrawCircle(mPosition.x, mPosition.y, 10, sf::Color::Blue);
+	if (pEntity->IsInside(x, y) == false)
+		return;
+
+	pEntitySelected = pEntity;
+}
+
+void SampleScene::OnUpdate()
+{
+	if(pEntitySelected != nullptr)
+	{
+		sf::Vector2f position = pEntitySelected->GetPosition();
+		Debug::DrawCircle(position.x, position.y, 10, sf::Color::Blue);
+	}
 }

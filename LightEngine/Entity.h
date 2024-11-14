@@ -13,47 +13,58 @@ class Scene;
 
 class Entity
 {
+    struct Target 
+    {
+		sf::Vector2i position;
+        float distance;
+		bool isSet;
+    };
+
 protected:
     sf::CircleShape mShape;
     sf::Vector2f mDirection;
-	sf::Vector2f mTarget;
-    bool mHasTarget;
-
+	Target mTarget;
     float mSpeed;
     bool mToDestroy;
     int mTag;
 
 public:
-	void GoToDirection(float x, float y, float speed);
-    void GoToPosition(float x, float y, float speed);
-    void SetPosition(float x, float y, float ratioX = 0.f, float ratioY = 0.f);
+	bool GoToDirection(int x, int y, float speed = -1.f);
+    bool GoToPosition(int x, int y, float speed = -1.f);
+    void SetPosition(float x, float y, float ratioX = 0.5f, float ratioY = 0.5f);
+	void SetDirection(float x, float y, float speed = -1.f);
 	void SetSpeed(float speed) { mSpeed = speed; }
-    void SetTag(int tag);
+	void SetTag(int tag) { mTag = tag; }
+	float GetRadius() const { return mShape.getRadius(); }
 
-    sf::Vector2f GetPosition(float ratioX = 0.f, float ratioY = 0.f) const;
-	sf::Shape* GetShape();
+    sf::Vector2f GetPosition(float ratioX = 0.5f, float ratioY = 0.5f) const;
+	sf::Shape* GetShape() { return &mShape; }
 
-    bool IsTag(int tag) const;
+	bool IsTag(int tag) const { return mTag == tag; }
     bool IsColliding(Entity* other) const;
+	bool IsInside(float x, float y) const;
 
     void Destroy();
-    bool ToDestroy() const;
+	bool ToDestroy() const { return mToDestroy; }
 	
 	template<typename T>
 	T* GetScene() const;
 
     Scene* GetScene() const;
+	float GetDeltaTime() const;
 
-protected:
-    virtual ~Entity() {};
+    template<typename T>
+    T* CreateEntity(float radius, const sf::Color& color);
+
+    virtual ~Entity() = default;
     Entity(float radius, const sf::Color& color);
 
-    virtual void OnUpdate() = 0;
-    virtual void OnCollision(Entity* collidedWith) = 0;
+    virtual void OnUpdate() {};
+    virtual void OnCollision(Entity* collidedWith) {};
+    virtual void OnDestroy() {};
 	
 private:
     void Update();
-	void CheckTarget();
 
     friend class GameManager;
 };

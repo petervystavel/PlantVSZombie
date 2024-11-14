@@ -92,7 +92,7 @@ const char* Plant::GetStateName(State state) const
 
 void Plant::OnUpdate()
 {
-	const sf::Vector2f& position = GetPosition(0.5f, 0.5f);
+	const sf::Vector2f& position = GetPosition();
 	const char* stateName = GetStateName((Plant::State)mStateMachine.GetCurrentState());
 
 	std::string ammo = std::to_string(mAmmo) + "/" + std::to_string(mMaxAmmo);

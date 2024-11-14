@@ -5,5 +5,5 @@
 namespace Utils
 {
 	bool Normalize(sf::Vector2f& vector);
-	bool IsCollinear(const sf::Vector2f& a, const sf::Vector2f& b);
+	float GetDistance(int x1, int y1, int x2, int y2);
 }

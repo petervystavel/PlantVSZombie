@@ -4,7 +4,7 @@
 #include "Zombie.h"
 #include "Debug.h"
 
-void GameScene::Initialize()
+void GameScene::OnInitialize()
 {
 	int width = GetWindowWidth();
 	int height = GetWindowHeight();
@@ -19,11 +19,13 @@ void GameScene::Initialize()
 	float startX = plantRadius * 2;
 	float startY = plantRadius + (spacing / 2);
 
+	Plant* pPlants[3];
+
 	for (int i = 0; i < 3; i++) 
 	{
-		mpPlants[i] = CreateEntity<Plant>(plantRadius, sf::Color::Green);
-		mpPlants[i]->SetPosition(startX, startY, 0.5f, 0.5f);
-		mpPlants[i]->SetAreaIndex(i);
+		pPlants[i] = CreateEntity<Plant>(plantRadius, sf::Color::Green);
+		pPlants[i]->SetPosition(startX, startY, 0.5f, 0.5f);
+		pPlants[i]->SetAreaIndex(i);
 
 		int xMin = startX + plantHeight;
 		int yMin = startY - plantRadius;
@@ -36,27 +38,13 @@ void GameScene::Initialize()
 	}
 }
 
-void GameScene::Update()
+void GameScene::OnUpdate()
 {
 	for (int i = 0; i < 3; i++)
 	{
 		const AABB& aabb = mAreas[i];
 
 		Debug::DrawRectangle(aabb.xMin, aabb.yMin, aabb.xMax - aabb.xMin, aabb.yMax - aabb.yMin, sf::Color::Red);
-	}
-
-	for (int i = 0; i < 3; i++) 
-	{
-		for (auto it = mZombies[i].begin(); it != mZombies[i].end();)
-		{
-			if ((*it)->ToDestroy() == false) 
-			{
-				it++;
-				continue;
-			}
-
-			it = mZombies[i].erase(it);
-		}
 	}
 }
 
@@ -73,7 +61,7 @@ int GameScene::GetClickedArea(int x, int y) const
 	return -1;
 }
 
-void GameScene::HandleInput(const sf::Event& event)
+void GameScene::OnEvent(const sf::Event& event)
 {
 	if (event.type != sf::Event::EventType::MouseButtonPressed)
 		return;
@@ -89,13 +77,22 @@ void GameScene::HandleInput(const sf::Event& event)
 
 	Zombie* pZombie = CreateEntity<Zombie>(25, sf::Color::Red);
 	pZombie->SetPosition(event.mouseButton.x, y, 0.5f, 0.5f);
+	pZombie->SetLane(index);
 
-	mZombies[index].push_back(pZombie);
+	mLaneZombieCount[index]++;
 }
 
 bool GameScene::IsZombieInArea(int index) const
 {
 	_ASSERT(index >= 0 && index < 3);
 
-	return mZombies[index].size() > 0;
+	return mLaneZombieCount[index] > 0;
+}
+
+void GameScene::OnDestroyZombie(int lane)
+{
+	_ASSERT(lane >= 0 && lane < 3);
+	_ASSERT(mLaneZombieCount[lane] > 0);
+
+	mLaneZombieCount[lane]--;
 }

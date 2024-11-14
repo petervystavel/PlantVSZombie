@@ -8,7 +8,7 @@ Zombie::Zombie(float radius, const sf::Color& color) : Entity(radius, color)
 {
 	SetTag(GameScene::Tag::ZOMBIE);
 
-	GoToDirection(-1, 0, 50);
+	SetDirection(-1, 0, 50);
 }
 
 void Zombie::OnCollision(Entity* pCollidedWith)
@@ -24,3 +24,13 @@ void Zombie::OnCollision(Entity* pCollidedWith)
 	}
 }
 
+void Zombie::OnDestroy()
+{
+	_ASSERT(mLane != -1);
+
+	GameScene* pScene = GetScene<GameScene>();
+
+	sf::Vector2f position = GetPosition(0.f, 0.f);
+
+	pScene->OnDestroyZombie(mLane);
+}

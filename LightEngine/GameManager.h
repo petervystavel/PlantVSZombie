@@ -19,6 +19,7 @@ class GameManager
 {
 	std::list<Entity*> mEntities;
 	std::list<Entity*> mEntitiesToDestroy;
+	std::list<Entity*> mEntitiesToAdd;
 
 	sf::RenderWindow* mpWindow;
 	sf::Font mFont;

@@ -1,4 +1,4 @@
-#pragma once
+	#pragma once
 
 #include "Scene.h"
 #include "GameManager.h"
@@ -10,7 +10,7 @@ T* Scene::CreateEntity(float radius, const sf::Color& color)
 
 	T* newEntity = new T(radius, color);
 	
-	mpGameManager->mEntities.push_back(newEntity);
+	mpGameManager->mEntitiesToAdd.push_back(newEntity);
 
 	return newEntity;
 }

@@ -1,16 +1,23 @@
 #pragma once
 
 #include "Scene.h"
-#include "Zombie.h"
+
+class DummyEntity;
+
 class SampleScene : public Scene
 {
-	sf::Vector2f mPosition;
-	Zombie* mpZombie;
+	DummyEntity* pEntity1;
+	DummyEntity* pEntity2;
+
+	DummyEntity* pEntitySelected;
+
+private:
+	void TrySetSelectedEntity(DummyEntity* pEntity, int x, int y);
 
 public:
-
-	void Initialize() override;
-	void HandleInput(const sf::Event& event) override;
-	void Update() override;
+	void OnInitialize() override;
+	void OnEvent(const sf::Event& event) override;
+	void OnUpdate() override;
 };
+
 

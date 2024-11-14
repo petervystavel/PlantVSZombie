@@ -19,8 +19,11 @@ namespace Utils
 		return false;
     }
 
-	bool IsCollinear(const sf::Vector2f& a, const sf::Vector2f& b)
+	float GetDistance(int x1, int y1, int x2, int y2)
 	{
-		return a.x * b.y - a.y * b.x == 0;
+		int x = x2 - x1;
+		int y = y2 - y1;
+
+		return std::sqrt(x * x + y * y);
 	}
 }
