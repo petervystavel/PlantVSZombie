@@ -20,10 +20,8 @@ class Plant : public Entity
 	int mMaxAmmo = 6;
 
 	float mShootCadence = 1.0f;
-	float mShootTimer = 0.0f;
 	
 	float mReloadDuration = 2.0f;
-	float mReloadTimer = 0.0f;
 	
 	int mAreaIndex;
 

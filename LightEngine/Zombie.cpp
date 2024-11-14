@@ -30,7 +30,5 @@ void Zombie::OnDestroy()
 
 	GameScene* pScene = GetScene<GameScene>();
 
-	sf::Vector2f position = GetPosition(0.f, 0.f);
-
 	pScene->OnDestroyZombie(mLane);
 }

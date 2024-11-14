@@ -7,24 +7,24 @@
 
 void PlantAction_Shooting::Start(Plant* pPlant)
 {
-	pPlant->mShootTimer = pPlant->mShootCadence;
+	mShootTimer = pPlant->mShootCadence;
 }
 
 void PlantAction_Shooting::Update(Plant* pPlant)
 {
-	pPlant->mShootTimer += GameManager::Get()->GetDeltaTime();
+	mShootTimer += GameManager::Get()->GetDeltaTime();
 
-	if (pPlant->mShootTimer < pPlant->mShootCadence)
+	if (mShootTimer < pPlant->mShootCadence)
 		return;
 
-	pPlant->mShootTimer -= pPlant->mShootCadence;
+	mShootTimer -= pPlant->mShootCadence;
 
 	GameScene* pScene = pPlant->GetScene<GameScene>();
 
-	const sf::Vector2f& position = pPlant->GetPosition(0.5f, 0.5f);
+	const sf::Vector2f& position = pPlant->GetPosition();
 
 	Projectile* pProjectile = pScene->CreateEntity<Projectile>(5.0f, sf::Color::Red);
-	pProjectile->SetPosition(position.x, position.y, 0.5f, 0.5f);
+	pProjectile->SetPosition(position.x, position.y);
 
 	pPlant->mAmmo--;
 }
@@ -35,15 +35,15 @@ void PlantAction_Shooting::End(Plant* pPlant)
 
 void PlantAction_Reloading::Start(Plant* pPlant)
 {
+	mReloadTimer = 0.f;
 }
 
 void PlantAction_Reloading::Update(Plant* pPlant)
 {
-	pPlant->mReloadTimer += GameManager::Get()->GetDeltaTime();
+	mReloadTimer += GameManager::Get()->GetDeltaTime();
 
-	if (pPlant->mReloadTimer < pPlant->mReloadDuration)
+	if (mReloadTimer < pPlant->mReloadDuration)
 		return;
 
-	pPlant->mReloadTimer = 0.f;
 	pPlant->mAmmo = pPlant->mMaxAmmo;
 }

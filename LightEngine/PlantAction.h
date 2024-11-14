@@ -13,6 +13,8 @@ public:
 
 class PlantAction_Shooting : public Action<Plant>
 {
+	float mShootTimer = 0.0f;
+
 public:
 	void Start(Plant* pPlant) override;
 	void Update(Plant* pPlant) override;
@@ -21,6 +23,8 @@ public:
 
 class PlantAction_Reloading : public Action<Plant>
 {
+	float mReloadTimer = 0.0f;
+
 public:
 	void Start(Plant* pPlant) override;
 	void Update(Plant* pPlant) override;
