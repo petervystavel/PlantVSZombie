@@ -92,7 +92,8 @@ bool GameScene::IsZombieInArea(int index) const
 void GameScene::OnDestroyZombie(int lane)
 {
 	_ASSERT(lane >= 0 && lane < 3);
-	_ASSERT(mLaneZombieCount[lane] > 0);
+	if(mLaneZombieCount[lane] <= 0)
+		return;
 
 	mLaneZombieCount[lane]--;
 }
