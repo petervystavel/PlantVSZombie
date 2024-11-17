@@ -13,6 +13,9 @@
     <Filter Include="Game\PlantStateMachine">
       <UniqueIdentifier>{e5a990fd-2950-4273-9213-ca67aec6d3fd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="SampleScene">
+      <UniqueIdentifier>{cb0c1b12-51a1-456e-88e6-82b04b889c68}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Entity.cpp">
@@ -60,6 +63,12 @@
     </ClCompile>
     <ClCompile Include="Behaviour.inl">
       <Filter>Engine\StateMachine</Filter>
+    </ClCompile>
+    <ClCompile Include="DummyEntity.cpp">
+      <Filter>SampleScene</Filter>
+    </ClCompile>
+    <ClCompile Include="SampleScene.cpp">
+      <Filter>SampleScene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -110,6 +119,12 @@
     </ClInclude>
     <ClInclude Include="Scene.h">
       <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="DummyEntity.h">
+      <Filter>SampleScene</Filter>
+    </ClInclude>
+    <ClInclude Include="SampleScene.h">
+      <Filter>SampleScene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
