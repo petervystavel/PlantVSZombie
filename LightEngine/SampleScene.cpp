@@ -30,7 +30,15 @@ void SampleScene::OnEvent(const sf::Event& event)
 	{
 		if (pEntitySelected != nullptr) 
 		{
-			pEntitySelected->GoToPosition(event.mouseButton.x, event.mouseButton.y, 100.f);
+			pEntitySelected->GoToDirection(event.mouseButton.x, event.mouseButton.y, 100.f);
+		}
+	}
+
+	if (event.mouseButton.button == sf::Mouse::Button::Middle)
+	{
+		if (pEntitySelected != nullptr)
+		{
+			pEntitySelected->Stop();
 		}
 	}
 }
