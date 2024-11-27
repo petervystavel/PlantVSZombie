@@ -79,7 +79,8 @@ void GameManager::HandleInput()
 	sf::Event event;
 	while (mpWindow->pollEvent(event))
 	{
-		if (event.type == sf::Event::Closed)
+		if (event.type == sf::Event::Closed ||
+			(event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape))
 		{
 			mpWindow->close();
 		}

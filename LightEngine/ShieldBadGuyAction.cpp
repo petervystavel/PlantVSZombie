@@ -1,4 +1,5 @@
 #include "ShieldBadGuyAction.h"
+#include "Debug.h"
 
 void ShieldBadGuyAction_Defend::Start(ShieldBadGuy* pShieldBadGuy)
 {
@@ -41,6 +42,8 @@ void ShieldBadGuyAction_Roam::End(ShieldBadGuy* pShieldBadGuy)
 
 void ShieldBadGuyAction_Attack::Start(ShieldBadGuy* pShieldBadGuy)
 {
+	auto position = pShieldBadGuy->GetPosition();
+	Debug::DrawText(position.x, position.y + 50, "ATTAAAACK", 0.5f, 0.5f, sf::Color::Red);
 }
 
 void ShieldBadGuyAction_Attack::Update(ShieldBadGuy* pShieldBadGuy)

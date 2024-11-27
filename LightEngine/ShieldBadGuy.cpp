@@ -34,6 +34,15 @@ ShieldBadGuy::ShieldBadGuy(float radius, const sf::Color& color) : Entity(radius
 		Behaviour<ShieldBadGuy>* pDefend = mStateMachine.CreateBehaviour(State::Defend);
 		pDefend->AddAction(new ShieldBadGuyAction_Defend());
 
+		//-> ATTACK
+		{
+			auto transition = pDefend->CreateTransition(State::Attack);
+
+			transition->AddCondition<ShieldBadGuyCondition_PlayerIsForward>();
+			auto condition = transition->AddCondition<ShieldBadGuyCondition_PlayerInsideDistance>();
+			condition->SetDistance(100.0f);
+		}
+
 		//-> ROAM
 		{
 			auto transition = pDefend->CreateTransition(State::Roam);
@@ -49,6 +58,21 @@ ShieldBadGuy::ShieldBadGuy(float radius, const sf::Color& color) : Entity(radius
 
 			auto condition = transition->AddCondition<ShieldBadGuyCondition_PlayerIsForward>();
 			condition->expected = false;
+		}
+	}
+
+	//ATTACK
+	{
+		Behaviour<ShieldBadGuy>* pAttack = mStateMachine.CreateBehaviour(State::Attack);
+		pAttack->AddAction(new ShieldBadGuyAction_Attack());
+
+		//-> DEFEND
+		{
+			auto transition = pAttack->CreateTransition(State::Defend);
+
+			auto condition2 = transition->AddCondition<ShieldBadGuyCondition_PlayerInsideDistance>();
+			condition2->SetDistance(100.0f);
+			condition2->expected = false;
 		}
 	}
 

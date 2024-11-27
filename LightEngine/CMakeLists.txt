@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.15)
-project(rugby_skeleton)
+project(ShieldBadGuy)
 
 find_package(SFML 2.5 COMPONENTS graphics audio REQUIRED)
 
@@ -54,10 +54,3 @@ target_compile_options(${PROJECT_NAME}
     PRIVATE "-g3"
 	PRIVATE "-march=native"
 )
-
-# Checks if OSX and links appropriate frameworks (only required on MacOS)
-if (APPLE)
-    target_link_libraries(${PROJECT_NAME} "-framework IOKit")
-    target_link_libraries(${PROJECT_NAME} "-framework Cocoa")
-    target_link_libraries(${PROJECT_NAME} "-framework OpenGL")
-endif()
