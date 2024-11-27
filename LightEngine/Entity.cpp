@@ -87,6 +87,8 @@ bool Entity::GoToDirection(int x, int y, float speed)
 
 	mDirection = direction;
 
+	mTarget.isSet = false;
+
 	return true;
 }
 
@@ -110,6 +112,15 @@ void Entity::SetDirection(float x, float y, float speed)
 		mSpeed = speed;
 
 	mDirection = sf::Vector2f(x, y);
+
+	mTarget.isSet = false;
+}
+
+void Entity::Stop() 
+{
+	mDirection = sf::Vector2f(0.f, 0.f);
+	mSpeed = 0.f;
+	mTarget.isSet = false;
 }
 
 void Entity::Update()
