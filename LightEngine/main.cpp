@@ -15,7 +15,7 @@ int main()
 
 	pInstance->CreateWindow(1280, 720, "PVZ");
 	
-	pInstance->LaunchScene<GameScene>();
+	pInstance->LaunchScene<SampleScene>();
 
 	return 0;
 }

@@ -1,18 +1,19 @@
 #include "SampleScene.h"
 
 #include "DummyEntity.h"
+#include "ShieldBadGuy.h"
 
 #include "Debug.h"
 
 void SampleScene::OnInitialize()
 {
-	pEntity1 = CreateEntity<DummyEntity>(100, sf::Color::Red);
-	pEntity1->SetPosition(100, 100);
+	pPlayer = CreateEntity<DummyEntity>(50, sf::Color::Red);
+	pPlayer->SetPosition(100, 600);
 
-	pEntity2 = CreateEntity<DummyEntity>(50, sf::Color::Green);
-	pEntity2->SetPosition(500, 500);
-
-	pEntitySelected = nullptr;
+	pEnemy = CreateEntity<ShieldBadGuy>(50, sf::Color::Green);
+	pEnemy->SetPosition(500, 600);
+	//pEnemy->SetSpeed(50.f);
+	pEnemy->SetState(ShieldBadGuy::State::Roam);
 }
 
 void SampleScene::OnEvent(const sf::Event& event)
@@ -20,42 +21,18 @@ void SampleScene::OnEvent(const sf::Event& event)
 	if (event.type != sf::Event::EventType::MouseButtonPressed)
 		return;
 
-	if (event.mouseButton.button == sf::Mouse::Button::Right)
-	{
-		TrySetSelectedEntity(pEntity1, event.mouseButton.x, event.mouseButton.y);
-		TrySetSelectedEntity(pEntity2, event.mouseButton.x, event.mouseButton.y);
-	}
-
 	if (event.mouseButton.button == sf::Mouse::Button::Left)
 	{
-		if (pEntitySelected != nullptr) 
-		{
-			pEntitySelected->GoToDirection(event.mouseButton.x, event.mouseButton.y, 100.f);
-		}
+		pPlayer->GoToPosition(event.mouseButton.x, pPlayer->GetPosition().y, 300.f);
 	}
-
-	if (event.mouseButton.button == sf::Mouse::Button::Middle)
-	{
-		if (pEntitySelected != nullptr)
-		{
-			pEntitySelected->Stop();
-		}
-	}
-}
-
-void SampleScene::TrySetSelectedEntity(DummyEntity* pEntity, int x, int y)
-{
-	if (pEntity->IsInside(x, y) == false)
-		return;
-
-	pEntitySelected = pEntity;
 }
 
 void SampleScene::OnUpdate()
 {
-	if(pEntitySelected != nullptr)
-	{
-		sf::Vector2f position = pEntitySelected->GetPosition();
-		Debug::DrawCircle(position.x, position.y, 10, sf::Color::Blue);
-	}
+
+}
+
+DummyEntity* SampleScene::GetPlayer() const
+{
+	return pPlayer;
 }

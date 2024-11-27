@@ -128,7 +128,7 @@ void GameManager::Update()
 
 	for (auto it = mEntitiesToDestroy.begin(); it != mEntitiesToDestroy.end(); ++it) 
 	{
-		delete* it;
+		delete *it;
 	}
 
     mEntitiesToDestroy.clear();

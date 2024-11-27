@@ -73,6 +73,18 @@ sf::Vector2f Entity::GetPosition(float ratioX, float ratioY) const
 	return position;
 }
 
+int Entity::GetX(float ratioX) const
+{
+	float size = mShape.getRadius() * 2;
+	return mShape.getPosition().x + size * ratioX;
+}
+
+int Entity::GetY(float ratioY) const
+{
+	float size = mShape.getRadius() * 2;
+	return mShape.getPosition().y + size * ratioY;
+}
+
 bool Entity::GoToDirection(int x, int y, float speed)
 {
 	if(speed > 0)
