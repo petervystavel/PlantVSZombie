@@ -5,6 +5,7 @@
 
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
+#include <cassert>
 
 #include <iostream>
 
@@ -37,7 +38,7 @@ GameManager::~GameManager()
 
 void GameManager::CreateWindow(unsigned int width, unsigned int height, const char* title, int fpsLimit)
 {
-	_ASSERT(mpWindow == nullptr);
+	assert(mpWindow == nullptr);
 
 	mpWindow = new sf::RenderWindow(sf::VideoMode(width, height), title);
 	mpWindow->setFramerateLimit(fpsLimit);
@@ -56,9 +57,9 @@ void GameManager::Run()
 
 	//#TODO : Load somewhere else
 	bool fontLoaded = mFont.loadFromFile("Hack-Regular.ttf");
-	_ASSERT(fontLoaded);
+	assert(fontLoaded);
 
-	_ASSERT(mpScene != nullptr);
+	assert(mpScene != nullptr);
 
 	sf::Clock clock;
 	while (mpWindow->isOpen())

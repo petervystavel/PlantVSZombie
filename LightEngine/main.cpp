@@ -7,8 +7,6 @@
 #include "GameScene.h"
 
 #include <cstdlib>
-#include <crtdbg.h>
-
 int main() 
 {
     GameManager* pInstance = GameManager::Get();

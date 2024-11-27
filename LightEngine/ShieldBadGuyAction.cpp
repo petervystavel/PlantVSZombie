@@ -46,3 +46,8 @@ void ShieldBadGuyAction_Attack::Start(ShieldBadGuy* pShieldBadGuy)
 void ShieldBadGuyAction_Attack::Update(ShieldBadGuy* pShieldBadGuy)
 {
 }
+
+
+void ShieldBadGuyAction_Attack::End(ShieldBadGuy* pShieldBadGuy)
+{
+}

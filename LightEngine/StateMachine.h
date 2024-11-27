@@ -67,7 +67,7 @@ void StateMachine<T>::Update()
 template<typename T>
 Behaviour<T>* StateMachine<T>::CreateBehaviour(int state)
 {
-	_ASSERT(state >= 0 && state < mBehaviours.size());
+	assert(state >= 0 && state < mBehaviours.size());
 
 	Behaviour<T>* pBehaviour = new Behaviour<T>(mOwner);
 	mBehaviours[state] = pBehaviour;

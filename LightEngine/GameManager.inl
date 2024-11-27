@@ -2,12 +2,13 @@
 
 #include "GameManager.h"
 #include "Scene.h"
+#include <cassert>
 
 template<typename T>
 void GameManager::LaunchScene()
 {
 	static_assert(std::is_base_of<Scene, T>::value, "T must be derived from Scene");
-	_ASSERT(mpScene == nullptr);
+	assert(mpScene == nullptr);
 
 	T* newScene = new T();
 

@@ -84,14 +84,14 @@ void GameScene::OnEvent(const sf::Event& event)
 
 bool GameScene::IsZombieInArea(int index) const
 {
-	_ASSERT(index >= 0 && index < 3);
+	assert(index >= 0 && index < 3);
 
 	return mLaneZombieCount[index] > 0;
 }
 
 void GameScene::OnDestroyZombie(int lane)
 {
-	_ASSERT(lane >= 0 && lane < 3);
+	assert(lane >= 0 && lane < 3);
 	if(mLaneZombieCount[lane] <= 0)
 		return;
 

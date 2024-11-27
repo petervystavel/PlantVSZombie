@@ -76,8 +76,8 @@ void Debug::DrawText(float x, float y, const std::string& text, const sf::Color&
 
 void Debug::DrawText(float x, float y, const std::string& text, float ratioX, float ratioY, const sf::Color& color)
 {
-	_ASSERT(ratioX >= 0.f && ratioX <= 1.f);
-	_ASSERT(ratioY >= 0.f && ratioY <= 1.f);
+	assert(ratioX >= 0.f && ratioX <= 1.f);
+	assert(ratioY >= 0.f && ratioY <= 1.f);
 
 	sf::Text sfText;
 

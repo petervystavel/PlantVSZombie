@@ -26,7 +26,7 @@ void Zombie::OnCollision(Entity* pCollidedWith)
 
 void Zombie::OnDestroy()
 {
-	_ASSERT(mLane != -1);
+	assert(mLane != -1);
 
 	GameScene* pScene = GetScene<GameScene>();
 
