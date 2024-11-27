@@ -11,7 +11,7 @@
 #include "Debug.h"
 
 ShieldBadGuy::ShieldBadGuy(float radius, const sf::Color& color) : Entity(radius, color)
-, mStateMachine(this, State::Count)
+, mStateMachine(this, State::Count), mAttackCooldownTime(2.0f), mAttackTimer(0.0f)
 {
 	//ROAM
 	{
@@ -82,9 +82,9 @@ const char* ShieldBadGuy::GetStateName(State state) const
 {
 	switch (state)
 	{
-	case Defend: return "Defend";
-	case Roam: return "Roam";
-	case Attack: return "Attack";
+	case State::Defend: return "Defend";
+	case State::Roam: return "Roam";
+	case State::Attack: return "Attack";
 	default: return "Unknown";
 	}
 }
@@ -95,8 +95,8 @@ void ShieldBadGuy::OnUpdate()
 	const char* stateName = GetStateName((ShieldBadGuy::State)mStateMachine.GetCurrentState());
 
 	Debug::DrawText(position.x, position.y - 50, stateName, 0.5f, 0.5f, sf::Color::Red);
-	// Debug::DrawText(position.x, position.y, ammo, 0.5f, 0.5f, sf::Color::Blue);
 
+	mAttackTimer += GameManager::Get()->GetDeltaTime();
 	mStateMachine.Update();
 }
 
@@ -107,4 +107,18 @@ void ShieldBadGuy::OnCollision(Entity* collidedWith)
 void ShieldBadGuy::SetState(State state)
 {
 	mStateMachine.SetState(state);
+}
+
+bool ShieldBadGuy::CanAttack() const
+{
+	return mAttackTimer >= mAttackCooldownTime;
+}
+
+void ShieldBadGuy::AttackTarget(DummyEntity * entity)
+{
+	if (!CanAttack())
+	{
+		return;
+	}
+	mAttackTimer = 0.f;
 }

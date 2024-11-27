@@ -2,10 +2,15 @@
 
 #include "Entity.h"
 #include "StateMachine.h"
+class DummyEntity;
 
 class ShieldBadGuy : public Entity
 {
 	StateMachine<ShieldBadGuy> mStateMachine;
+
+	float mAttackCooldownTime;
+	float mAttackTimer;
+	bool CanAttack()const;
 
 public:
 	enum State
@@ -22,6 +27,7 @@ public:
 
 	const char* GetStateName(State state) const;
 	void SetState(State state);
+	void AttackTarget(DummyEntity* entity);
 
 protected:
 	void OnUpdate() override;

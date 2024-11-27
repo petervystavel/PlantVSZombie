@@ -1,5 +1,6 @@
 #include "ShieldBadGuyAction.h"
 #include "Debug.h"
+#include "SampleScene.h"
 
 void ShieldBadGuyAction_Defend::Start(ShieldBadGuy* pShieldBadGuy)
 {
@@ -48,6 +49,8 @@ void ShieldBadGuyAction_Attack::Start(ShieldBadGuy* pShieldBadGuy)
 
 void ShieldBadGuyAction_Attack::Update(ShieldBadGuy* pShieldBadGuy)
 {
+	// lol
+	pShieldBadGuy->AttackTarget(((SampleScene*)GameManager::Get()->GetScene())->GetPlayer());
 }
 
 
