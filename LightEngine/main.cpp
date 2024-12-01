@@ -11,7 +11,7 @@ int main()
 {
     GameManager* pInstance = GameManager::Get();
 
-	pInstance->CreateWindow(1280, 720, "PVZ");
+	pInstance->CreateWindow(1280, 360, "PVZ");
 	
 	pInstance->LaunchScene<SampleScene>();
 

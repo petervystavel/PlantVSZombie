@@ -8,10 +8,10 @@
 void SampleScene::OnInitialize()
 {
 	pPlayer = CreateEntity<DummyEntity>(50, sf::Color::Red);
-	pPlayer->SetPosition(100, 600);
+	pPlayer->SetPosition(100, 180);
 
 	pEnemy = CreateEntity<ShieldBadGuy>(50, sf::Color::Green);
-	pEnemy->SetPosition(500, 600);
+	pEnemy->SetPosition(500, 180);
 	//pEnemy->SetSpeed(50.f);
 	pEnemy->SetState(ShieldBadGuy::State::Roam);
 }
