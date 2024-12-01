@@ -25,7 +25,7 @@ ShieldBadGuy::ShieldBadGuy(float radius, const sf::Color& color) : Entity(radius
 			auto condition = transition->AddCondition<ShieldBadGuyCondition_PlayerInsideDistance>();
 			condition->SetDistance(200.0f);
 
-			auto condition2 = transition->AddCondition<ShieldBadGuyCondition_PlayerIsForward>();
+			transition->AddCondition<ShieldBadGuyCondition_PlayerIsForward>();
 		}
 	}
 

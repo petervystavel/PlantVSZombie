@@ -14,12 +14,13 @@ void ShieldBadGuyAction_Defend::Update(ShieldBadGuy* pShieldBadGuy)
 
 void ShieldBadGuyAction_Defend::End(ShieldBadGuy* pShieldBadGuy)
 {
-	pShieldBadGuy->GetShape()->setFillColor(/*default color*/ sf::Color::Blue);
+	pShieldBadGuy->GetShape()->setFillColor(/*default color*/ sf::Color::Yellow);
 }
 
 void ShieldBadGuyAction_Roam::Start(ShieldBadGuy* pShieldBadGuy)
 {
 	pShieldBadGuy->SetDirection(mDirectionX, 0, 50.f);
+	pShieldBadGuy->GetShape()->setFillColor(/*default color*/ sf::Color::Blue);
 }
 
 void ShieldBadGuyAction_Roam::Update(ShieldBadGuy* pShieldBadGuy)
