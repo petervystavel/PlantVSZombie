@@ -23,7 +23,9 @@ public:
     int Update();
     void End();
 
-    void AddAction(Action<T>* action);
+	template<typename U>
+    U* AddAction();
+
     Transition<T>* CreateTransition(int state);
 };
 

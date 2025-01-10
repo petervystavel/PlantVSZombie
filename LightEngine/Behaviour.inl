@@ -2,6 +2,7 @@
 
 #include "Behaviour.h"
 
+#include "Action.h"
 #include "Transition.h"
 #include "Condition.h"
 
@@ -35,9 +36,16 @@ Transition<T>* Behaviour<T>::CreateTransition(int state)
 }
 
 template<typename T>
-void Behaviour<T>::AddAction(Action<T>* pAction)
+template<typename U>
+U* Behaviour<T>::AddAction()
 {
+	static_assert(std::is_base_of<Action<T>, U>::value, "T must be derived from Action");
+
+	U* pAction = new U();
+
     mActions.push_back(pAction);
+
+	return pAction;
 }
 
 template<typename T>

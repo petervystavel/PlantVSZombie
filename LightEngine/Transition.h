@@ -16,7 +16,7 @@ public:
 	Transition(int transitionState) : mTransitionState(transitionState) {}
 
 	template<typename U>
-	U* AddCondition();
+	U* AddCondition(bool expected = true);
 	
 	bool Try(T* owner);
 	int GetTransitionState() { return mTransitionState; }

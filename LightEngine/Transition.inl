@@ -6,11 +6,13 @@
 
 template<typename T>
 template<typename U>
-U* Transition<T>::AddCondition()
+U* Transition<T>::AddCondition(bool expected)
 {
 	static_assert(std::is_base_of<Condition<T>, U>::value, "T must be derived from Condition");
 
 	U* pCondition = new U();
+
+	pCondition->expected = expected;
 
 	mConditions.push_back(pCondition);
 

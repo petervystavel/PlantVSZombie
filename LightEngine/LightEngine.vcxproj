@@ -87,6 +87,7 @@
     <None Include="Entity.inl" />
     <None Include="GameManager.inl" />
     <None Include="Scene.inl" />
+    <None Include="StateMachine.inl" />
     <None Include="Transition.inl" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

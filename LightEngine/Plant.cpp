@@ -21,7 +21,7 @@ Plant::Plant() :
 	//IDLE
 	{
 		Behaviour<Plant>* pIdle = mStateMachine.CreateBehaviour(State::Idle);
-		pIdle->AddAction(new PlantAction_Idle());
+		pIdle->AddAction<PlantAction_Idle>();
 
 		//-> SHOOTING
 		{
@@ -34,25 +34,21 @@ Plant::Plant() :
 		{
 			auto transition = pIdle->CreateTransition(State::Reloading);
 
-			auto condition1 = transition->AddCondition<PlantCondition_FullAmmo>();
-			condition1->expected = false;
-
-			auto condition2 = transition->AddCondition<PlantCondition_ZombieOnLane>();
-			condition2->expected = false;
+			transition->AddCondition<PlantCondition_FullAmmo>(false);
+			transition->AddCondition<PlantCondition_ZombieOnLane>(false);
 		}
 	}
 
 	//SHOOTING
 	{
 		Behaviour<Plant>* pShooting = mStateMachine.CreateBehaviour(State::Shooting);
-		pShooting->AddAction(new PlantAction_Shooting());
+		pShooting->AddAction<PlantAction_Shooting>();
 
 		//-> IDLE
 		{
 			auto transition = pShooting->CreateTransition(State::Idle);
 			
-			auto condition = transition->AddCondition<PlantCondition_ZombieOnLane>();
-			condition->expected = false;
+			transition->AddCondition<PlantCondition_ZombieOnLane>(false);
 		}
 
 		//-> RELOADING
@@ -66,7 +62,7 @@ Plant::Plant() :
 	//RELOADING
 	{
 		Behaviour<Plant>* pShooting = mStateMachine.CreateBehaviour(State::Reloading);
-		pShooting->AddAction(new PlantAction_Reloading());
+		pShooting->AddAction<PlantAction_Reloading>();
 
 		//-> IDLE
 		{
