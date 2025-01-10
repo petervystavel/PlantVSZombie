@@ -6,7 +6,7 @@ bool PlantCondition_ZombieOnLane::OnTest(Plant* pPlant)
 {
 	PVZScene* pScene = pPlant->GetScene<PVZScene>();
 	
-	int areaIndex = pPlant->GetAreaIndex();
+	int areaIndex = pPlant->mAreaIndex;
 
 	bool condition = pScene->IsZombieInArea(areaIndex);
 
@@ -15,10 +15,10 @@ bool PlantCondition_ZombieOnLane::OnTest(Plant* pPlant)
 
 bool PlantCondition_NoAmmo::OnTest(Plant* pPlant)
 {
-	return pPlant->GetAmmo() == 0;
+	return pPlant->mAmmo == 0;
 }
 
 bool PlantCondition_FullAmmo::OnTest(Plant* pPlant)
 {
-	return pPlant->GetAmmo() == 6;
+	return pPlant->mAmmo == pPlant->mMaxAmmo;
 }

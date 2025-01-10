@@ -29,10 +29,8 @@ public:
 	Plant();
 
 	void SetAreaIndex(int index) { mAreaIndex = index; }
-	int GetAreaIndex() { return mAreaIndex; }
 	const char* GetStateName(State state) const;
-	int GetAmmo() { return mAmmo; }
-
+	
 protected:
 	void OnUpdate() override;
 	void OnCollision(Entity* pCollidedWith) override;
@@ -40,4 +38,8 @@ protected:
 	friend class PlantAction_Idle;
 	friend class PlantAction_Reloading;
 	friend class PlantAction_Shooting;
+
+	friend class PlantCondition_FullAmmo;
+	friend class PlantCondition_NoAmmo;
+	friend class PlantCondition_ZombieOnLane;
 };
