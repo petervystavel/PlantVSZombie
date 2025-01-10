@@ -1,24 +1,24 @@
 #include "Zombie.h"
 
-#include "GameScene.h"
+#include "PVZScene.h"
 
 #include <iostream>
 
 void Zombie::OnInitialize()
 {
-	SetTag(GameScene::Tag::ZOMBIE);
+	SetTag(PVZScene::Tag::ZOMBIE);
 
 	SetDirection(-1, 0, 50);
 }
 
 void Zombie::OnCollision(Entity* pCollidedWith)
 {
-	if (pCollidedWith->IsTag(GameScene::Tag::PROJECTILE))
+	if (pCollidedWith->IsTag(PVZScene::Tag::PROJECTILE))
 	{
 		Destroy();
 	}
 
-	if (pCollidedWith->IsTag(GameScene::Tag::PLANT))
+	if (pCollidedWith->IsTag(PVZScene::Tag::PLANT))
 	{
 		Destroy();
 	}
@@ -28,7 +28,7 @@ void Zombie::OnDestroy()
 {
 	_ASSERT(mLane != -1);
 
-	GameScene* pScene = GetScene<GameScene>();
+	PVZScene* pScene = GetScene<PVZScene>();
 
 	pScene->OnDestroyZombie(mLane);
 }

@@ -4,7 +4,7 @@
 
 #include "GameManager.h"
 #include "SampleScene.h"
-#include "GameScene.h"
+#include "PVZScene.h"
 
 #include <cstdlib>
 #include <crtdbg.h>
@@ -15,7 +15,7 @@ int main()
 
 	pInstance->CreateWindow(1280, 720, "PVZ");
 	
-	pInstance->LaunchScene<GameScene>();
+	pInstance->LaunchScene<PVZScene>();
 
 	return 0;
 }

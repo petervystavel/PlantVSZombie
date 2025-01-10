@@ -2,7 +2,7 @@
 
 #include <string>
 
-#include "GameScene.h"
+#include "PVZScene.h"
 #include "Projectile.h"
 
 #include "PlantAction.h"
@@ -16,7 +16,7 @@ Plant::Plant() :
 	mAreaIndex = -1;
 	mAmmo = mMaxAmmo;
 
-	SetTag(GameScene::Tag::PLANT);
+	SetTag(PVZScene::Tag::PLANT);
 
 	//IDLE
 	{

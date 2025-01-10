@@ -1,10 +1,10 @@
 #include "PlantCondition.h"
 
-#include "GameScene.h"
+#include "PVZScene.h"
 
 bool PlantCondition_ZombieOnLane::OnTest(Plant* pPlant)
 {
-	GameScene* pScene = pPlant->GetScene<GameScene>();
+	PVZScene* pScene = pPlant->GetScene<PVZScene>();
 	
 	int areaIndex = pPlant->GetAreaIndex();
 

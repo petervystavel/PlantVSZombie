@@ -3,7 +3,7 @@
 
 #include "GameManager.h"
 #include "Projectile.h"
-#include "GameScene.h"
+#include "PVZScene.h"
 
 void PlantAction_Shooting::Start(Plant* pPlant)
 {
@@ -19,7 +19,7 @@ void PlantAction_Shooting::Update(Plant* pPlant)
 
 	mShootTimer -= pPlant->mShootCadence;
 
-	GameScene* pScene = pPlant->GetScene<GameScene>();
+	PVZScene* pScene = pPlant->GetScene<PVZScene>();
 
 	const sf::Vector2f& position = pPlant->GetPosition();
 
