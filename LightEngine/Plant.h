@@ -26,7 +26,7 @@ class Plant : public Entity
 	int mAreaIndex;
 
 public:
-	Plant(float radius, const sf::Color& color);
+	Plant();
 
 	void SetAreaIndex(int index) { mAreaIndex = index; }
 	int GetAreaIndex() { return mAreaIndex; }

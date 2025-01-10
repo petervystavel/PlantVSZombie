@@ -40,9 +40,6 @@
     </ClCompile>
     <ClCompile Include="SampleScene.cpp" />
     <ClCompile Include="Scene.cpp" />
-    <ClCompile Include="ShieldBadGuy.cpp" />
-    <ClCompile Include="ShieldBadGuyAction.cpp" />
-    <ClCompile Include="ShieldBadGuyCondition.cpp" />
     <ClCompile Include="StateMachine.cpp" />
     <ClCompile Include="Transition.cpp" />
     <ClCompile Include="Zombie.cpp">
@@ -75,9 +72,6 @@
     </ClInclude>
     <ClInclude Include="SampleScene.h" />
     <ClInclude Include="Scene.h" />
-    <ClInclude Include="ShieldBadGuy.h" />
-    <ClInclude Include="ShieldBadGuyAction.h" />
-    <ClInclude Include="ShieldBadGuyCondition.h" />
     <ClInclude Include="StateMachine.h" />
     <ClInclude Include="Transition.h" />
     <ClInclude Include="Zombie.h">
@@ -101,7 +95,7 @@
     <ProjectGuid>{c31a8fd3-0204-4f85-bb29-1240472d0db2}</ProjectGuid>
     <RootNamespace>SFML</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectName>LightEngine</ProjectName>
+    <ProjectName>PVZ</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">

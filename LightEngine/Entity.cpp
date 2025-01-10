@@ -6,7 +6,7 @@
 #include <SFML/Graphics/Color.hpp>
 #include <SFML/Graphics/CircleShape.hpp>
 
-Entity::Entity(float radius, const sf::Color& color)
+void Entity::Initialize(float radius, const sf::Color& color)
 {
 	mDirection = sf::Vector2f(0.0f, 0.0f);
 	mSpeed = 0.0f;
@@ -16,14 +16,10 @@ Entity::Entity(float radius, const sf::Color& color)
 	mShape.setOrigin(0.f, 0.f);
 	mShape.setRadius(radius);
 	mShape.setFillColor(color);
-
+	
 	mTarget.isSet = false;
-}
 
-void Entity::Destroy()
-{
-	mToDestroy = true;
-	OnDestroy();
+	OnInitialize();
 }
 
 bool Entity::IsColliding(Entity* other) const
@@ -52,6 +48,13 @@ bool Entity::IsInside(float x, float y) const
 	return (dx * dx + dy * dy) < (radius * radius);
 }
 
+void Entity::Destroy()
+{
+	mToDestroy = true;
+
+	OnDestroy();
+}
+
 void Entity::SetPosition(float x, float y, float ratioX, float ratioY)
 {
 	float size = mShape.getRadius() * 2;
@@ -73,18 +76,6 @@ sf::Vector2f Entity::GetPosition(float ratioX, float ratioY) const
 	return position;
 }
 
-int Entity::GetX(float ratioX) const
-{
-	float size = mShape.getRadius() * 2;
-	return mShape.getPosition().x + size * ratioX;
-}
-
-int Entity::GetY(float ratioY) const
-{
-	float size = mShape.getRadius() * 2;
-	return mShape.getPosition().y + size * ratioY;
-}
-
 bool Entity::GoToDirection(int x, int y, float speed)
 {
 	if(speed > 0)
@@ -98,8 +89,6 @@ bool Entity::GoToDirection(int x, int y, float speed)
 		return false;
 
 	mDirection = direction;
-
-	mTarget.isSet = false;
 
 	return true;
 }
@@ -124,15 +113,6 @@ void Entity::SetDirection(float x, float y, float speed)
 		mSpeed = speed;
 
 	mDirection = sf::Vector2f(x, y);
-
-	mTarget.isSet = false;
-}
-
-void Entity::Stop() 
-{
-	mDirection = sf::Vector2f(0.f, 0.f);
-	mSpeed = 0.f;
-	mTarget.isSet = false;
 }
 
 void Entity::Update()

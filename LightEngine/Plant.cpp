@@ -10,8 +10,8 @@
 
 #include "Debug.h"
 
-Plant::Plant(float radius, const sf::Color& color) : Entity(radius, color)
-	, mStateMachine(this, State::Count)
+Plant::Plant() :
+	mStateMachine(this, State::Count)
 {
 	mAreaIndex = -1;
 	mAmmo = mMaxAmmo;

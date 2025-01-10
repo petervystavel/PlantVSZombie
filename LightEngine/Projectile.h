@@ -4,10 +4,8 @@
 
 class Projectile : public Entity
 {
-public:
-	Projectile(float radius, const sf::Color& color);
-
 protected:
+	void OnInitialize() override;
 	void OnUpdate() override;
 	void OnCollision(Entity* pCollidedWith) override;
 };

@@ -16,9 +16,6 @@
     <Filter Include="SampleScene">
       <UniqueIdentifier>{cb0c1b12-51a1-456e-88e6-82b04b889c68}</UniqueIdentifier>
     </Filter>
-    <Filter Include="SampleScene\ShieldBadGuyStateMachine">
-      <UniqueIdentifier>{96056f59-1ea6-4b57-b07b-014966df37fa}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Entity.cpp">
@@ -72,15 +69,6 @@
     </ClCompile>
     <ClCompile Include="SampleScene.cpp">
       <Filter>SampleScene</Filter>
-    </ClCompile>
-    <ClCompile Include="ShieldBadGuy.cpp">
-      <Filter>SampleScene</Filter>
-    </ClCompile>
-    <ClCompile Include="ShieldBadGuyAction.cpp">
-      <Filter>SampleScene\ShieldBadGuyStateMachine</Filter>
-    </ClCompile>
-    <ClCompile Include="ShieldBadGuyCondition.cpp">
-      <Filter>SampleScene\ShieldBadGuyStateMachine</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -137,15 +125,6 @@
     </ClInclude>
     <ClInclude Include="SampleScene.h">
       <Filter>SampleScene</Filter>
-    </ClInclude>
-    <ClInclude Include="ShieldBadGuy.h">
-      <Filter>SampleScene</Filter>
-    </ClInclude>
-    <ClInclude Include="ShieldBadGuyAction.h">
-      <Filter>SampleScene\ShieldBadGuyStateMachine</Filter>
-    </ClInclude>
-    <ClInclude Include="ShieldBadGuyCondition.h">
-      <Filter>SampleScene\ShieldBadGuyStateMachine</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

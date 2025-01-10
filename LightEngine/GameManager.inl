@@ -10,7 +10,6 @@ void GameManager::LaunchScene()
 	_ASSERT(mpScene == nullptr);
 
 	T* newScene = new T();
-
 	mpScene = newScene;
 
 	mpScene->SetGameManager(this);

@@ -31,22 +31,16 @@ protected:
 public:
 	bool GoToDirection(int x, int y, float speed = -1.f);
     bool GoToPosition(int x, int y, float speed = -1.f);
-    
     void SetPosition(float x, float y, float ratioX = 0.5f, float ratioY = 0.5f);
 	void SetDirection(float x, float y, float speed = -1.f);
-	void Stop();
 	void SetSpeed(float speed) { mSpeed = speed; }
 	void SetTag(int tag) { mTag = tag; }
-	
-    float GetRadius() const { return mShape.getRadius(); }
-	sf::Vector2f GetDirection() const { return mDirection; }
+	float GetRadius() const { return mShape.getRadius(); }
+
     sf::Vector2f GetPosition(float ratioX = 0.5f, float ratioY = 0.5f) const;
-    int GetX(float ratioX = 0.5f) const;
-	int GetY(float ratioY = 0.5f) const;
-    sf::Shape* GetShape() { return &mShape; }
+	sf::Shape* GetShape() { return &mShape; }
 
 	bool IsTag(int tag) const { return mTag == tag; }
-	bool IsTag(Entity* other) const { return mTag == other->mTag; }
     bool IsColliding(Entity* other) const;
 	bool IsInside(float x, float y) const;
 
@@ -62,17 +56,21 @@ public:
     template<typename T>
     T* CreateEntity(float radius, const sf::Color& color);
 
-    virtual ~Entity() = default;
-    Entity(float radius, const sf::Color& color);
+protected:
+    Entity() = default;
+    ~Entity() = default;
 
     virtual void OnUpdate() {};
     virtual void OnCollision(Entity* collidedWith) {};
-    virtual void OnDestroy() {};
+	virtual void OnInitialize() {};
+	virtual void OnDestroy() {};
 	
 private:
     void Update();
+	void Initialize(float radius, const sf::Color& color);
 
     friend class GameManager;
+    friend Scene;
 };
 
 #include "Entity.inl"

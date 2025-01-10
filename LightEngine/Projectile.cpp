@@ -2,8 +2,7 @@
 
 #include "GameScene.h"
 
-Projectile::Projectile(float radius, const sf::Color& color)
-	: Entity(radius, color)
+void Projectile::OnInitialize()
 {
 	SetTag(GameScene::Tag::PROJECTILE);
 

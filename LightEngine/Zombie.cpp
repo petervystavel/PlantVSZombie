@@ -4,7 +4,7 @@
 
 #include <iostream>
 
-Zombie::Zombie(float radius, const sf::Color& color) : Entity(radius, color)
+void Zombie::OnInitialize()
 {
 	SetTag(GameScene::Tag::ZOMBIE);
 
