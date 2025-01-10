@@ -9,32 +9,31 @@ void GameScene::OnInitialize()
 	int width = GetWindowWidth();
 	int height = GetWindowHeight();
 
-	float plantRadius = 50.f;
-	float plantHeight = plantRadius * 2;
-	float spaceBetweenPlants = 20;
+	const int plantCount = 3;
 
-	float totalHeight = (spaceBetweenPlants * 2) + (plantHeight * 3);
-	float spacing = height - totalHeight;
+	float plantRadius = height * 0.075f;
 
-	float startX = plantRadius * 2;
-	float startY = plantRadius + (spacing / 2);
+	float plantStartY = height / (plantCount * 2.f);
+	float plantGapY = height / (float)plantCount;
 
-	Plant* pPlants[3];
+	float plantStartX = width * 0.05f;
 
-	for (int i = 0; i < 3; i++) 
+	Plant* pPlants[plantCount];
+
+	for (int i = 0; i < plantCount; i++)
 	{
 		pPlants[i] = CreateEntity<Plant>(plantRadius, sf::Color::Green);
-		pPlants[i]->SetPosition(startX, startY, 0.5f, 0.5f);
+		pPlants[i]->SetPosition(plantStartX, plantStartY, 0.f, 0.5f);
 		pPlants[i]->SetAreaIndex(i);
 
-		int xMin = startX + plantHeight;
-		int yMin = startY - plantRadius;
+		int xMin = plantStartX + plantRadius * 3.f;
+		int yMin = plantStartY - plantRadius;
 		int xMax = width;
-		int yMax = startY + plantRadius;
+		int yMax = plantStartY + plantRadius;
 
 		mAreas[i] = { xMin, yMin, xMax, yMax };
 
-		startY += plantHeight + spaceBetweenPlants;
+		plantStartY += plantGapY;
 	}
 }
 

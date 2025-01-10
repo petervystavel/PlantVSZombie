@@ -6,13 +6,13 @@
 
 void SampleScene::OnInitialize()
 {
-	pPlayer = CreateEntity<DummyEntity>(50, sf::Color::Red);
-	pPlayer->SetPosition(100, 180);
+	pEntity1 = CreateEntity<DummyEntity>(100, sf::Color::Red);
+	pEntity1->SetPosition(100, 100);
 
-	pEnemy = CreateEntity<ShieldBadGuy>(50, sf::Color::Green);
-	pEnemy->SetPosition(500, 180);
-	//pEnemy->SetSpeed(50.f);
-	pEnemy->SetState(ShieldBadGuy::State::Roam);
+	pEntity2 = CreateEntity<DummyEntity>(50, sf::Color::Green);
+	pEntity2->SetPosition(500, 500);
+
+	pEntitySelected = nullptr;
 }
 
 void SampleScene::OnEvent(const sf::Event& event)
