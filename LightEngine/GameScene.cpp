@@ -4,23 +4,23 @@
 #include "Zombie.h"
 #include "Debug.h"
 
+#define PLAN_COUNT 3
+
 void GameScene::OnInitialize()
 {
 	int width = GetWindowWidth();
 	int height = GetWindowHeight();
 
-	const int plantCount = 3;
-
 	float plantRadius = height * 0.075f;
 
-	float plantStartY = height / (plantCount * 2.f);
-	float plantGapY = height / (float)plantCount;
+	float plantStartY = height / (PLAN_COUNT * 2.f);
+	float plantGapY = height / (float)PLAN_COUNT;
 
 	float plantStartX = width * 0.05f;
 
-	Plant* pPlants[plantCount];
+	Plant* pPlants[PLAN_COUNT];
 
-	for (int i = 0; i < plantCount; i++)
+	for (int i = 0; i < PLAN_COUNT; i++)
 	{
 		pPlants[i] = CreateEntity<Plant>(plantRadius, sf::Color::Green);
 		pPlants[i]->SetPosition(plantStartX, plantStartY, 0.f, 0.5f);
@@ -39,7 +39,7 @@ void GameScene::OnInitialize()
 
 void GameScene::OnUpdate()
 {
-	for (int i = 0; i < 3; i++)
+	for (int i = 0; i < PLAN_COUNT; i++)
 	{
 		const AABB& aabb = mAreas[i];
 
@@ -49,7 +49,7 @@ void GameScene::OnUpdate()
 
 int GameScene::GetClickedArea(int x, int y) const
 {
-	for (int i = 0; i < 3; i++)
+	for (int i = 0; i < PLAN_COUNT; i++)
 	{
 		const AABB* aabb = &mAreas[i];
 
@@ -83,14 +83,14 @@ void GameScene::OnEvent(const sf::Event& event)
 
 bool GameScene::IsZombieInArea(int index) const
 {
-	_ASSERT(index >= 0 && index < 3);
+	_ASSERT(index >= 0 && index < PLAN_COUNT);
 
 	return mLaneZombieCount[index] > 0;
 }
 
 void GameScene::OnDestroyZombie(int lane)
 {
-	_ASSERT(lane >= 0 && lane < 3);
+	_ASSERT(lane >= 0 && lane < PLAN_COUNT);
 	if(mLaneZombieCount[lane] <= 0)
 		return;
 
