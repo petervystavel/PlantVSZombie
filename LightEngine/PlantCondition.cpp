@@ -2,23 +2,26 @@
 
 #include "PVZScene.h"
 
-bool PlantCondition_ZombieOnLane::OnTest(Plant* pPlant)
+namespace PlantCondition 
 {
-	PVZScene* pScene = pPlant->GetScene<PVZScene>();
-	
-	int areaIndex = pPlant->mAreaIndex;
+	bool IsZombieOnLane(Plant* pPlant)
+	{
+		PVZScene* pScene = pPlant->GetScene<PVZScene>();
 
-	bool condition = pScene->IsZombieInArea(areaIndex);
+		int areaIndex = pPlant->GetAreaIndex();
 
-	return condition;
-}
+		bool condition = pScene->IsZombieInArea(areaIndex);
 
-bool PlantCondition_NoAmmo::OnTest(Plant* pPlant)
-{
-	return pPlant->mAmmo == 0;
-}
+		return condition;
+	}
 
-bool PlantCondition_FullAmmo::OnTest(Plant* pPlant)
-{
-	return pPlant->mAmmo == pPlant->mMaxAmmo;
+	bool HasNoAmmo(Plant* pPlant)
+	{
+		return pPlant->GetAmmo() == 0;
+	}
+
+	bool HasFullAmmo(Plant* pPlant)
+	{
+		return pPlant->GetAmmo() == pPlant->GetMaxAmmo();
+	}
 }

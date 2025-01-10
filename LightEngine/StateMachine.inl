@@ -1,55 +1,43 @@
 #include "StateMachine.h"
 
-#include "Behaviour.h"
-
 template<typename T>
 StateMachine<T>::StateMachine(T* owner, int stateCount)
 {
 	mOwner = owner;
 	mCurrentState = -1;
-	mBehaviours.resize(stateCount);
+	mActions.resize(stateCount);
 }
 
 template<typename T>
 StateMachine<T>::~StateMachine()
 {
-	for (Behaviour<T>* pBehaviour : mBehaviours)
-		delete pBehaviour;
+	for (Action<T>* pAction : mActions)
+		delete pAction;
 }
-
 
 template<typename T>
 void StateMachine<T>::SetState(int state)
 {
-	if (mCurrentState > 0 && mCurrentState < mBehaviours.size())
-		mBehaviours[mCurrentState]->End();
+	if (mCurrentState > 0 && mCurrentState < mActions.size())
+		mActions[mCurrentState]->End(mOwner);
 
 	mCurrentState = state;
 
-	mBehaviours[mCurrentState]->Start();
+	mActions[mCurrentState]->Start(mOwner);
 }
 
 template<typename T>
 void StateMachine<T>::Update()
 {
-	if (mCurrentState == -1)
-		return;
-
-	int transitionState = mBehaviours[mCurrentState]->Update();
-
-	if (transitionState == -1)
-		return;
-
-	SetState(transitionState);
+	mActions[mCurrentState]->Update(mOwner);
 }
 
 template<typename T>
-Behaviour<T>* StateMachine<T>::CreateBehaviour(int state)
+template<typename U>
+void StateMachine<T>::AddAction(int state)
 {
-	_ASSERT(state >= 0 && state < mBehaviours.size());
+	_ASSERT(state >= 0 && state < mActions.size());
 
-	Behaviour<T>* pBehaviour = new Behaviour<T>(mOwner);
-	mBehaviours[state] = pBehaviour;
-
-	return pBehaviour;
+	U* pAction = new U();
+	mActions[state] = pAction;
 }

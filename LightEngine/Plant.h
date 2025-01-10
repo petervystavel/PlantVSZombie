@@ -30,6 +30,9 @@ public:
 
 	void SetAreaIndex(int index) { mAreaIndex = index; }
 	const char* GetStateName(State state) const;
+	int GetAmmo() const { return mAmmo; }
+	int GetMaxAmmo() const { return mMaxAmmo; }
+	int GetAreaIndex() const { return mAreaIndex; }
 	
 protected:
 	void OnUpdate() override;

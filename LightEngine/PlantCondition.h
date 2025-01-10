@@ -1,22 +1,13 @@
 #pragma once
 
-#include "Condition.h"
 #include "Plant.h"
 
-class PlantCondition_ZombieOnLane : public Condition<Plant>
+namespace PlantCondition 
 {
-public:
-	bool OnTest(Plant* owner) override;
-};
+	bool IsZombieOnLane(Plant* pPlant);
 
-class PlantCondition_NoAmmo : public Condition<Plant>
-{
-public:
-	bool OnTest(Plant* owner) override;
-};
+	bool HasNoAmmo(Plant* pPlant);
 
-class PlantCondition_FullAmmo : public Condition<Plant>
-{
-public:
-	bool OnTest(Plant* owner) override;
-};
+	bool HasFullAmmo(Plant* pPlant);
+}
+

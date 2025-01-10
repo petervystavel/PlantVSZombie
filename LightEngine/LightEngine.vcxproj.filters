@@ -37,15 +37,6 @@
     <ClCompile Include="Zombie.cpp">
       <Filter>Game</Filter>
     </ClCompile>
-    <ClCompile Include="GameScene.cpp">
-      <Filter>Game</Filter>
-    </ClCompile>
-    <ClCompile Include="Behaviour.cpp">
-      <Filter>Engine\StateMachine</Filter>
-    </ClCompile>
-    <ClCompile Include="Transition.cpp">
-      <Filter>Engine\StateMachine</Filter>
-    </ClCompile>
     <ClCompile Include="StateMachine.cpp">
       <Filter>Engine\StateMachine</Filter>
     </ClCompile>
@@ -61,15 +52,13 @@
     <ClCompile Include="Scene.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
-    <ClCompile Include="Behaviour.inl">
-      <Filter>Engine\StateMachine</Filter>
-    </ClCompile>
     <ClCompile Include="DummyEntity.cpp">
       <Filter>SampleScene</Filter>
     </ClCompile>
     <ClCompile Include="SampleScene.cpp">
       <Filter>SampleScene</Filter>
     </ClCompile>
+    <ClCompile Include="PVZScene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Entity.h">
@@ -90,19 +79,7 @@
     <ClInclude Include="Zombie.h">
       <Filter>Game</Filter>
     </ClInclude>
-    <ClInclude Include="GameScene.h">
-      <Filter>Game</Filter>
-    </ClInclude>
     <ClInclude Include="Action.h">
-      <Filter>Engine\StateMachine</Filter>
-    </ClInclude>
-    <ClInclude Include="Behaviour.h">
-      <Filter>Engine\StateMachine</Filter>
-    </ClInclude>
-    <ClInclude Include="Condition.h">
-      <Filter>Engine\StateMachine</Filter>
-    </ClInclude>
-    <ClInclude Include="Transition.h">
       <Filter>Engine\StateMachine</Filter>
     </ClInclude>
     <ClInclude Include="StateMachine.h">
@@ -126,6 +103,7 @@
     <ClInclude Include="SampleScene.h">
       <Filter>SampleScene</Filter>
     </ClInclude>
+    <ClInclude Include="PVZScene.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Scene.inl">
@@ -134,14 +112,11 @@
     <None Include="GameManager.inl">
       <Filter>Engine</Filter>
     </None>
-    <None Include="Condition.inl">
+    <None Include="StateMachine.inl">
       <Filter>Engine\StateMachine</Filter>
     </None>
     <None Include="Entity.inl">
-      <Filter>Engine\StateMachine</Filter>
-    </None>
-    <None Include="Transition.inl">
-      <Filter>Engine\StateMachine</Filter>
+      <Filter>Engine</Filter>
     </None>
   </ItemGroup>
 </Project>

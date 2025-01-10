@@ -18,59 +18,9 @@ Plant::Plant() :
 
 	SetTag(PVZScene::Tag::PLANT);
 
-	//IDLE
-	{
-		Behaviour<Plant>* pIdle = mStateMachine.CreateBehaviour(State::Idle);
-		pIdle->AddAction<PlantAction_Idle>();
-
-		//-> SHOOTING
-		{
-			auto transition = pIdle->CreateTransition(State::Shooting);
-			
-			auto condition = transition->AddCondition<PlantCondition_ZombieOnLane>();
-		}
-
-		//-> RELOADING
-		{
-			auto transition = pIdle->CreateTransition(State::Reloading);
-
-			transition->AddCondition<PlantCondition_FullAmmo>(false);
-			transition->AddCondition<PlantCondition_ZombieOnLane>(false);
-		}
-	}
-
-	//SHOOTING
-	{
-		Behaviour<Plant>* pShooting = mStateMachine.CreateBehaviour(State::Shooting);
-		pShooting->AddAction<PlantAction_Shooting>();
-
-		//-> IDLE
-		{
-			auto transition = pShooting->CreateTransition(State::Idle);
-			
-			transition->AddCondition<PlantCondition_ZombieOnLane>(false);
-		}
-
-		//-> RELOADING
-		{
-			auto transition = pShooting->CreateTransition(State::Reloading);
-			
-			transition->AddCondition<PlantCondition_NoAmmo>();
-		}
-	}
-
-	//RELOADING
-	{
-		Behaviour<Plant>* pShooting = mStateMachine.CreateBehaviour(State::Reloading);
-		pShooting->AddAction<PlantAction_Reloading>();
-
-		//-> IDLE
-		{
-			auto transition = pShooting->CreateTransition(State::Idle);
-			
-			auto condition = transition->AddCondition<PlantCondition_FullAmmo>();
-		}
-	}
+	mStateMachine.AddAction<PlantAction_Idle>(State::Idle);
+	mStateMachine.AddAction<PlantAction_Shooting>(State::Shooting);
+	mStateMachine.AddAction<PlantAction_Reloading>(State::Reloading);
 
 	mStateMachine.SetState(State::Idle);
 }
