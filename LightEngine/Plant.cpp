@@ -24,51 +24,29 @@ void Plant::OnInitialize()
 	{
 		Action<Plant>* pIdle = mpStateMachine->CreateAction<PlantAction_Idle>(State::Idle);
 
-		//-> SHOOTING
-		{
-			auto transition = pIdle->CreateTransition(State::Shooting);
+		/*TODO*/
 
-			auto condition = transition->AddCondition<PlantCondition_ZombieOnLane>();
-		}
-
-		//-> RELOADING
-		{
-			auto transition = pIdle->CreateTransition(State::Reloading);
-
-			transition->AddCondition<PlantCondition_FullAmmo>(false);
-			transition->AddCondition<PlantCondition_ZombieOnLane>(false);
-		}
+		//Transition Shooting
+		//Transition Reloading
 	}
 
 	//SHOOTING
 	{
 		Action<Plant>* pShooting = mpStateMachine->CreateAction<PlantAction_Shooting>(State::Shooting);
 
-		//-> IDLE
-		{
-			auto transition = pShooting->CreateTransition(State::Idle);
+		/*TODO*/
 
-			transition->AddCondition<PlantCondition_ZombieOnLane>(false);
-		}
-
-		//-> RELOADING
-		{
-			auto transition = pShooting->CreateTransition(State::Reloading);
-
-			transition->AddCondition<PlantCondition_NoAmmo>();
-		}
+		//Transition Idle
+		//Transition Reloading
 	}
 
 	//RELOADING
 	{
 		Action<Plant>* pShooting = mpStateMachine->CreateAction<PlantAction_Reloading>(State::Reloading);
 
-		//-> IDLE
-		{
-			auto transition = pShooting->CreateTransition(State::Idle);
+		/*TODO*/
 
-			auto condition = transition->AddCondition<PlantCondition_FullAmmo>();
-		}
+		//Transition Idle
 	}
 
 	mpStateMachine->SetState(State::Idle);
