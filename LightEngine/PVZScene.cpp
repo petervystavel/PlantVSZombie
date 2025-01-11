@@ -11,12 +11,12 @@ void PVZScene::OnInitialize()
 
 	float plantRadius = height * 0.075f;
 
-	float plantStartY = height / (PLAN_COUNT * 2.f);
-	float plantGapY = height / (float)PLAN_COUNT;
+	float plantStartY = height / (PLANT_COUNT * 2.f);
+	float plantGapY = height / (float)PLANT_COUNT;
 
 	float plantStartX = width * 0.05f;
 
-	for (int i = 0; i < PLAN_COUNT; i++)
+	for (int i = 0; i < PLANT_COUNT; i++)
 	{
 		mpPlants[i] = CreateEntity<Plant>(plantRadius, sf::Color::Green);
 		mpPlants[i]->SetPosition(plantStartX, plantStartY, 0.f, 0.5f);
@@ -34,7 +34,7 @@ void PVZScene::OnInitialize()
 
 void PVZScene::OnUpdate()
 {
-	for (int i = 0; i < PLAN_COUNT; i++)
+	for (int i = 0; i < PLANT_COUNT; i++)
 	{
 		const AABB& aabb = mAreas[i];
 
@@ -44,7 +44,7 @@ void PVZScene::OnUpdate()
 
 int PVZScene::GetClickedArea(int x, int y) const
 {
-	for (int i = 0; i < PLAN_COUNT; i++)
+	for (int i = 0; i < PLANT_COUNT; i++)
 	{
 		const AABB* aabb = &mAreas[i];
 
