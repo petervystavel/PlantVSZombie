@@ -7,7 +7,7 @@ class StateMachine;
 
 class Plant : public Entity
 {
-	StateMachine<Plant>* mStateMachine;
+	StateMachine<Plant>* mpStateMachine;
 
 	enum State 
 	{

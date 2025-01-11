@@ -13,17 +13,17 @@
 
 void Plant::OnInitialize()
 {
-	mStateMachine = new StateMachine<Plant>(this, State::Count);
+	mpStateMachine = new StateMachine<Plant>(this, State::Count);
 
 	mAmmo = mMaxAmmo;
 	mAreaIndex = -1;
 	SetTag(PVZScene::Tag::PLANT);
 
-	mStateMachine->AddAction<PlantAction_Idle>(State::Idle);
-	mStateMachine->AddAction<PlantAction_Shooting>(State::Shooting);
-	mStateMachine->AddAction<PlantAction_Reloading>(State::Reloading);
+	mpStateMachine->AddAction<PlantAction_Idle>(State::Idle);
+	mpStateMachine->AddAction<PlantAction_Shooting>(State::Shooting);
+	mpStateMachine->AddAction<PlantAction_Reloading>(State::Reloading);
 
-	mStateMachine->SetState(State::Idle);
+	mpStateMachine->SetState(State::Idle);
 }
 
 const char* Plant::GetStateName(State state) const
@@ -40,14 +40,14 @@ const char* Plant::GetStateName(State state) const
 void Plant::OnUpdate()
 {
 	const sf::Vector2f& position = GetPosition();
-	const char* stateName = GetStateName((Plant::State)mStateMachine->GetCurrentState());
+	const char* stateName = GetStateName((Plant::State)mpStateMachine->GetCurrentState());
 
 	std::string ammo = std::to_string(mAmmo) + "/" + std::to_string(mMaxAmmo);
 
 	Debug::DrawText(position.x, position.y - 50, stateName, 0.5f, 0.5f, sf::Color::Red);
 	Debug::DrawText(position.x, position.y, ammo, 0.5f, 0.5f, sf::Color::Blue);
 
-	mStateMachine->Update();
+	mpStateMachine->Update();
 }
 
 void Plant::Shoot()
