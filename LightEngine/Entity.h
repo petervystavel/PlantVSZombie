@@ -24,9 +24,9 @@ protected:
     sf::CircleShape mShape;
     sf::Vector2f mDirection;
 	Target mTarget;
-    float mSpeed;
-    bool mToDestroy;
-    int mTag;
+    float mSpeed = 0.f;
+    bool mToDestroy = false;
+    int mTag = -1;
 
 public:
 	bool GoToDirection(int x, int y, float speed = -1.f);
