@@ -5,12 +5,12 @@
 #include "Projectile.h"
 #include "PVZScene.h"
 
-void PlantAction_Shooting::Start(Plant* pPlant)
+void PlantAction_Shooting::OnStart(Plant* pPlant)
 {
 	mShootTimer = pPlant->mShootCadence;
 }
 
-void PlantAction_Shooting::Update(Plant* pPlant)
+void PlantAction_Shooting::OnUpdate(Plant* pPlant)
 {
 	mShootTimer += GameManager::Get()->GetDeltaTime();
 
@@ -29,16 +29,16 @@ void PlantAction_Shooting::Update(Plant* pPlant)
 	pPlant->mAmmo--;
 }
 
-void PlantAction_Shooting::End(Plant* pPlant)
+void PlantAction_Shooting::OnEnd(Plant* pPlant)
 {
 }
 
-void PlantAction_Reloading::Start(Plant* pPlant)
+void PlantAction_Reloading::OnStart(Plant* pPlant)
 {
 	mReloadTimer = 0.f;
 }
 
-void PlantAction_Reloading::Update(Plant* pPlant)
+void PlantAction_Reloading::OnUpdate(Plant* pPlant)
 {
 	mReloadTimer += GameManager::Get()->GetDeltaTime();
 

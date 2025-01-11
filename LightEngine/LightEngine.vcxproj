@@ -19,8 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Behaviour.cpp" />
-    <ClCompile Include="Behaviour.inl" />
+    <ClCompile Include="Action.inl" />
     <ClCompile Include="Debug.cpp" />
     <ClCompile Include="DummyEntity.cpp" />
     <ClCompile Include="Entity.cpp" />
@@ -51,7 +50,6 @@
     <ClCompile Include="Utils.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Action.h" />
     <ClInclude Include="Behaviour.h" />
     <ClInclude Include="Condition.h" />
     <ClInclude Include="Debug.h" />

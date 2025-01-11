@@ -3,30 +3,28 @@
 #include <vector>
 
 template<typename T>
-class Action;
-
-template<typename T>
 class Transition;
 
 template<typename T>
-class Behaviour
+class Action
 {
-	std::vector<Action<T>*> mActions;
 	std::vector<Transition<T>*> mTransitions;
-	T* mOwner;
+
+private:
+    int Update(T* pOwner);
 
 public:
-    Behaviour(T* owner);
-    ~Behaviour();
-
-    void Start();
-    int Update();
-    void End();
-
-	template<typename U>
-    U* AddAction();
+    ~Action();
 
     Transition<T>* CreateTransition(int state);
+
+protected:
+	virtual void OnStart(T* pOwner) = 0;
+	virtual void OnUpdate(T* pOwner) = 0;
+	virtual void OnEnd(T* pOwner) = 0;
+
+	template<typename T>
+	friend class StateMachine;
 };
 
-#include "Behaviour.inl"
+#include "Action.inl"

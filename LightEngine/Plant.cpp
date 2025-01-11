@@ -20,8 +20,7 @@ Plant::Plant() :
 
 	//IDLE
 	{
-		Behaviour<Plant>* pIdle = mStateMachine.CreateBehaviour(State::Idle);
-		pIdle->AddAction<PlantAction_Idle>();
+		Action<Plant>* pIdle = mStateMachine.CreateAction<PlantAction_Idle>(State::Idle);
 
 		//-> SHOOTING
 		{
@@ -41,8 +40,7 @@ Plant::Plant() :
 
 	//SHOOTING
 	{
-		Behaviour<Plant>* pShooting = mStateMachine.CreateBehaviour(State::Shooting);
-		pShooting->AddAction<PlantAction_Shooting>();
+		Action<Plant>* pShooting = mStateMachine.CreateAction<PlantAction_Shooting>(State::Shooting);
 
 		//-> IDLE
 		{
@@ -61,8 +59,7 @@ Plant::Plant() :
 
 	//RELOADING
 	{
-		Behaviour<Plant>* pShooting = mStateMachine.CreateBehaviour(State::Reloading);
-		pShooting->AddAction<PlantAction_Reloading>();
+		Action<Plant>* pShooting = mStateMachine.CreateAction<PlantAction_Reloading>(State::Reloading);
 
 		//-> IDLE
 		{
