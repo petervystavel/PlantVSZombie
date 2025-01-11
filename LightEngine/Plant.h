@@ -1,11 +1,13 @@
 #pragma once
 
 #include "Entity.h"
-#include "StateMachine.h"
+
+template<typename T>
+class StateMachine;
 
 class Plant : public Entity
 {
-	StateMachine<Plant> mStateMachine;
+	StateMachine<Plant>* mStateMachine;
 
 	enum State 
 	{
@@ -26,8 +28,6 @@ class Plant : public Entity
 	int mAreaIndex;
 
 public:
-	Plant();
-
 	void SetAreaIndex(int index) { mAreaIndex = index; }
 	const char* GetStateName(State state) const;
 	int GetAmmo() const { return mAmmo; }
