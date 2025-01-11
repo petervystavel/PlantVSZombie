@@ -6,16 +6,14 @@
 
 void Zombie::OnInitialize()
 {
-	SetTag(PVZScene::Tag::ZOMBIE);
-
-	SetDirection(-1, 0, 50);
+	/* TODO */
+	// Tag
+	// Direction
 }
 
 void Zombie::OnCollision(Entity* pCollidedWith)
 {
-	if (pCollidedWith->IsTag(PVZScene::Tag::PROJECTILE) || pCollidedWith->IsTag(PVZScene::Tag::PLANT))
-	{
-		Destroy();
-	}
+	/* TODO */
+	// Destroy if collided with a projectile or plant
 }
 

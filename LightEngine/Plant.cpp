@@ -9,33 +9,29 @@
 
 void Plant::OnInitialize()
 {
-	SetTag(PVZScene::Tag::PLANT);
-	mAmmo = mMaxAmmo;
+	/*TODO*/
+
+	// Tag
+	// Ammo
 }
 
 void Plant::OnUpdate()
 {
-	const sf::Vector2f& position = GetPosition();
+	/* TODO */
 
-	std::string ammo = std::to_string(mAmmo) + "/" + std::to_string(mMaxAmmo);
-
-	Debug::DrawText(position.x, position.y, ammo, 0.5f, 0.5f, sf::Color::Blue);
+	//Draw Ammo count
 }
 
 void Plant::Shoot()
 {
-	if (mAmmo <= 0)
-		return;
+	/* TODO */
 
-	const sf::Vector2f& position = GetPosition();
-
-	Projectile* pProjectile = CreateEntity<Projectile>(5.0f, sf::Color::Red);
-	pProjectile->SetPosition(position.x, position.y);
-
-	mAmmo--;
+	// Create a projectile
 }
 
 void Plant::Reload()
 {
-	mAmmo = mMaxAmmo;
+	/* TODO */
+
+	// Reload ammo
 }

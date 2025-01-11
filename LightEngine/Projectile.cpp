@@ -4,25 +4,22 @@
 
 void Projectile::OnInitialize()
 {
-	SetTag(PVZScene::Tag::PROJECTILE);
+	/* TODO */
 
-	SetDirection(1.0f, 0.0f, 100.0f);
+	// Tag
+	// Direction
 }
 
 void Projectile::OnUpdate()
 {
-	sf::Vector2f position = GetPosition(0.f, 0.f);
+	/* TODO */
 
-	int width = GetScene()->GetWindowWidth();
-
-	if (position.x > width)
-		Destroy();
+	// Destroy if out of bounds
 }
 
 void Projectile::OnCollision(Entity* pCollidedWith)
 {
-	if (pCollidedWith->IsTag(PVZScene::Tag::ZOMBIE))
-	{
-		Destroy();
-	}
+	/* TODO */
+
+	// Destroy if collided with a zombie
 }
