@@ -4,10 +4,10 @@
     <Filter Include="Engine">
       <UniqueIdentifier>{a8d0131e-eb50-44ac-848b-7a821ba71b21}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game">
+    <Filter Include="PVZ">
       <UniqueIdentifier>{656b759f-efb2-4f59-b546-0dd585a90074}</UniqueIdentifier>
     </Filter>
-    <Filter Include="SampleScene">
+    <Filter Include="Sample">
       <UniqueIdentifier>{cb0c1b12-51a1-456e-88e6-82b04b889c68}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -26,24 +26,26 @@
       <Filter>Engine</Filter>
     </ClCompile>
     <ClCompile Include="Plant.cpp">
-      <Filter>Game</Filter>
+      <Filter>PVZ</Filter>
     </ClCompile>
     <ClCompile Include="Zombie.cpp">
-      <Filter>Game</Filter>
+      <Filter>PVZ</Filter>
     </ClCompile>
     <ClCompile Include="Projectile.cpp">
-      <Filter>Game</Filter>
+      <Filter>PVZ</Filter>
     </ClCompile>
     <ClCompile Include="Scene.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
     <ClCompile Include="DummyEntity.cpp">
-      <Filter>SampleScene</Filter>
+      <Filter>Sample</Filter>
     </ClCompile>
     <ClCompile Include="SampleScene.cpp">
-      <Filter>SampleScene</Filter>
+      <Filter>Sample</Filter>
     </ClCompile>
-    <ClCompile Include="PVZScene.cpp" />
+    <ClCompile Include="PVZScene.cpp">
+      <Filter>PVZ</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Entity.h">
@@ -59,24 +61,26 @@
       <Filter>Engine</Filter>
     </ClInclude>
     <ClInclude Include="Plant.h">
-      <Filter>Game</Filter>
+      <Filter>PVZ</Filter>
     </ClInclude>
     <ClInclude Include="Zombie.h">
-      <Filter>Game</Filter>
+      <Filter>PVZ</Filter>
     </ClInclude>
     <ClInclude Include="Projectile.h">
-      <Filter>Game</Filter>
+      <Filter>PVZ</Filter>
     </ClInclude>
     <ClInclude Include="Scene.h">
       <Filter>Engine</Filter>
     </ClInclude>
     <ClInclude Include="DummyEntity.h">
-      <Filter>SampleScene</Filter>
+      <Filter>Sample</Filter>
     </ClInclude>
     <ClInclude Include="SampleScene.h">
-      <Filter>SampleScene</Filter>
+      <Filter>Sample</Filter>
     </ClInclude>
-    <ClInclude Include="PVZScene.h" />
+    <ClInclude Include="PVZScene.h">
+      <Filter>PVZ</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Scene.inl">
