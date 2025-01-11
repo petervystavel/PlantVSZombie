@@ -8,65 +8,39 @@
 
 void PlantAction_Idle::Update(Plant* pPlant)
 {
-	if (PlantCondition::IsZombieOnLane(pPlant)) 
-	{
-		pPlant->mStateMachine.SetState(Plant::State::Shooting);
-		return;
-	}
+	/* TODO */
 
-	if (PlantCondition::HasFullAmmo(pPlant) == false && PlantCondition::IsZombieOnLane(pPlant) == false)
-	{
-		pPlant->mStateMachine.SetState(Plant::State::Reloading);
-		return;
-	}
+	// Transition to shooting
+	// Transition to reloading
 }
 
 void PlantAction_Shooting::Start(Plant* pPlant)
 {
-	mShootTimer = pPlant->mShootCadence;
+	/* TODO */
+
+	// Start timer
 }
 
 void PlantAction_Shooting::Update(Plant* pPlant)
 {
-	if (PlantCondition::IsZombieOnLane(pPlant) == false)
-	{
-		pPlant->mStateMachine.SetState(Plant::State::Idle);
-		return;
-	}
+	/* TODO */
 
-	if (PlantCondition::HasNoAmmo(pPlant))
-	{
-		pPlant->mStateMachine.SetState(Plant::State::Reloading);
-		return;
-	}
+	// Shoot
 
-	mShootTimer += GameManager::Get()->GetDeltaTime();
-
-	if (mShootTimer < pPlant->mShootCadence)
-		return;
-
-	mShootTimer -= pPlant->mShootCadence;
-
-	pPlant->Shoot();
-}
-
-void PlantAction_Shooting::End(Plant* pPlant)
-{
+	// Transition to idle
+	// Transition to reloading
 }
 
 void PlantAction_Reloading::Start(Plant* pPlant)
 {
-	mReloadTimer = 0.f;
+	/* TODO */
+
+	// Start timer
 }
 
 void PlantAction_Reloading::Update(Plant* pPlant)
 {
-	mReloadTimer += GameManager::Get()->GetDeltaTime();
+	/* TODO */
 
-	if (mReloadTimer < pPlant->mReloadDuration)
-		return;
-
-	pPlant->Reload();
-
-	pPlant->mStateMachine.SetState(Plant::State::Idle);
+	// Transition to idle
 }

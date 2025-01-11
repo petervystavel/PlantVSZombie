@@ -13,12 +13,7 @@ void Zombie::OnInitialize()
 
 void Zombie::OnCollision(Entity* pCollidedWith)
 {
-	if (pCollidedWith->IsTag(PVZScene::Tag::PROJECTILE))
-	{
-		Destroy();
-	}
-
-	if (pCollidedWith->IsTag(PVZScene::Tag::PLANT))
+	if (pCollidedWith->IsTag(PVZScene::Tag::PROJECTILE) || pCollidedWith->IsTag(PVZScene::Tag::PLANT))
 	{
 		Destroy();
 	}

@@ -6,22 +6,22 @@ namespace PlantCondition
 {
 	bool IsZombieOnLane(Plant* pPlant)
 	{
-		PVZScene* pScene = pPlant->GetScene<PVZScene>();
+		/* TODO */
 
-		int areaIndex = pPlant->GetAreaIndex();
-
-		bool condition = pScene->IsZombieInArea(areaIndex);
-
-		return condition;
+		return false;
 	}
 
 	bool HasNoAmmo(Plant* pPlant)
 	{
-		return pPlant->GetAmmo() == 0;
+		/* TODO */
+
+		return false;
 	}
 
 	bool HasFullAmmo(Plant* pPlant)
 	{
-		return pPlant->GetAmmo() == pPlant->GetMaxAmmo();
+		/* TODO */
+
+		return false;
 	}
 }

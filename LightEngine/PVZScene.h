@@ -4,6 +4,8 @@
 
 #include <list>
 
+#define PLANT_COUNT 3
+
 class Plant;
 class Zombie;
 
@@ -30,8 +32,8 @@ public:
 		PROJECTILE
 	};
 
-	int mLaneZombieCount[3] = {0, 0, 0};		
-	AABB mAreas[3];
+	int mLaneZombieCount[PLANT_COUNT] = {0};
+	AABB mAreas[PLANT_COUNT];
 
 private:
 	int GetClickedArea(int x, int y) const;
