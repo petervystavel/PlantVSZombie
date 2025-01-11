@@ -12,13 +12,13 @@ void PlantAction_Idle::Update(Plant* pPlant)
 {
 	if (PlantCondition::IsZombieOnLane(pPlant)) 
 	{
-		pPlant->mStateMachine->SetState(Plant::State::Shooting);
+		pPlant->mpStateMachine->SetState(Plant::State::Shooting);
 		return;
 	}
 
 	if (PlantCondition::HasFullAmmo(pPlant) == false && PlantCondition::IsZombieOnLane(pPlant) == false)
 	{
-		pPlant->mStateMachine->SetState(Plant::State::Reloading);
+		pPlant->mpStateMachine->SetState(Plant::State::Reloading);
 		return;
 	}
 }
@@ -32,13 +32,13 @@ void PlantAction_Shooting::Update(Plant* pPlant)
 {
 	if (PlantCondition::IsZombieOnLane(pPlant) == false)
 	{
-		pPlant->mStateMachine->SetState(Plant::State::Idle);
+		pPlant->mpStateMachine->SetState(Plant::State::Idle);
 		return;
 	}
 
 	if (PlantCondition::HasNoAmmo(pPlant))
 	{
-		pPlant->mStateMachine->SetState(Plant::State::Reloading);
+		pPlant->mpStateMachine->SetState(Plant::State::Reloading);
 		return;
 	}
 
@@ -70,5 +70,5 @@ void PlantAction_Reloading::Update(Plant* pPlant)
 
 	pPlant->Reload();
 
-	pPlant->mStateMachine->SetState(Plant::State::Idle);
+	pPlant->mpStateMachine->SetState(Plant::State::Idle);
 }
