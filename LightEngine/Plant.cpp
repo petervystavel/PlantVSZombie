@@ -113,7 +113,3 @@ void Plant::OnUpdate()
 
 	mStateMachine.Update();
 }
-
-void Plant::OnCollision(Entity* collidedWith)
-{
-}

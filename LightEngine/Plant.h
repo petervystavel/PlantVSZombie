@@ -36,7 +36,6 @@ public:
 	
 protected:
 	void OnUpdate() override;
-	void OnCollision(Entity* pCollidedWith) override;
 
 	friend class PlantAction_Idle;
 	friend class PlantAction_Reloading;
