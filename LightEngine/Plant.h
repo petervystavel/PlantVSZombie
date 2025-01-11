@@ -37,6 +37,7 @@ public:
 	void Reload();
 	
 protected:
+	void OnInitialize() override;
 	void OnUpdate() override;
 
 	friend class PlantAction_Idle;

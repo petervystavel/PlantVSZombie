@@ -4,8 +4,6 @@
 #include "Zombie.h"
 #include "Debug.h"
 
-#define PLAN_COUNT 3
-
 void PVZScene::OnInitialize()
 {
 	int width = GetWindowWidth();
@@ -13,14 +11,14 @@ void PVZScene::OnInitialize()
 
 	float plantRadius = height * 0.075f;
 
-	float plantStartY = height / (PLAN_COUNT * 2.f);
-	float plantGapY = height / (float)PLAN_COUNT;
+	float plantStartY = height / (PLANT_COUNT * 2.f);
+	float plantGapY = height / (float)PLANT_COUNT;
 
 	float plantStartX = width * 0.05f;
 
-	Plant* pPlants[PLAN_COUNT];
+	Plant* pPlants[PLANT_COUNT];
 
-	for (int i = 0; i < PLAN_COUNT; i++)
+	for (int i = 0; i < PLANT_COUNT; i++)
 	{
 		pPlants[i] = CreateEntity<Plant>(plantRadius, sf::Color::Green);
 		pPlants[i]->SetPosition(plantStartX, plantStartY, 0.f, 0.5f);
@@ -39,7 +37,7 @@ void PVZScene::OnInitialize()
 
 void PVZScene::OnUpdate()
 {
-	for (int i = 0; i < PLAN_COUNT; i++)
+	for (int i = 0; i < PLANT_COUNT; i++)
 	{
 		const AABB& aabb = mAreas[i];
 
@@ -49,7 +47,7 @@ void PVZScene::OnUpdate()
 
 int PVZScene::GetClickedArea(int x, int y) const
 {
-	for (int i = 0; i < PLAN_COUNT; i++)
+	for (int i = 0; i < PLANT_COUNT; i++)
 	{
 		const AABB* aabb = &mAreas[i];
 
@@ -83,14 +81,14 @@ void PVZScene::OnEvent(const sf::Event& event)
 
 bool PVZScene::IsZombieInArea(int index) const
 {
-	_ASSERT(index >= 0 && index < PLAN_COUNT);
+	_ASSERT(index >= 0 && index < PLANT_COUNT);
 
 	return mLaneZombieCount[index] > 0;
 }
 
 void PVZScene::OnDestroyZombie(int lane)
 {
-	_ASSERT(lane >= 0 && lane < PLAN_COUNT);
+	_ASSERT(lane >= 0 && lane < PLANT_COUNT);
 	if(mLaneZombieCount[lane] <= 0)
 		return;
 

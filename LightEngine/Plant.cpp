@@ -16,13 +16,16 @@ Plant::Plant() :
 	mAreaIndex = -1;
 	mAmmo = mMaxAmmo;
 
-	SetTag(PVZScene::Tag::PLANT);
-
 	mStateMachine.AddAction<PlantAction_Idle>(State::Idle);
 	mStateMachine.AddAction<PlantAction_Shooting>(State::Shooting);
 	mStateMachine.AddAction<PlantAction_Reloading>(State::Reloading);
 
 	mStateMachine.SetState(State::Idle);
+}
+
+void Plant::OnInitialize()
+{
+	SetTag(PVZScene::Tag::PLANT);
 }
 
 const char* Plant::GetStateName(State state) const
