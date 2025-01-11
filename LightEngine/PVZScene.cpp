@@ -4,8 +4,6 @@
 #include "Zombie.h"
 #include "Debug.h"
 
-#define PLAN_COUNT 3
-
 void PVZScene::OnInitialize()
 {
 	int width = GetWindowWidth();
@@ -18,13 +16,11 @@ void PVZScene::OnInitialize()
 
 	float plantStartX = width * 0.05f;
 
-	Plant* pPlants[PLAN_COUNT];
-
 	for (int i = 0; i < PLAN_COUNT; i++)
 	{
-		pPlants[i] = CreateEntity<Plant>(plantRadius, sf::Color::Green);
-		pPlants[i]->SetPosition(plantStartX, plantStartY, 0.f, 0.5f);
-		pPlants[i]->SetAreaIndex(i);
+		mpPlants[i] = CreateEntity<Plant>(plantRadius, sf::Color::Green);
+		mpPlants[i]->SetPosition(plantStartX, plantStartY, 0.f, 0.5f);
+		mpPlants[i]->SetAreaIndex(i);
 
 		int xMin = plantStartX + plantRadius * 3.f;
 		int yMin = plantStartY - plantRadius;
@@ -62,20 +58,56 @@ int PVZScene::GetClickedArea(int x, int y) const
 
 void PVZScene::OnEvent(const sf::Event& event)
 {
-	if (event.type != sf::Event::EventType::MouseButtonPressed)
-		return;
+	if (event.type != sf::Event::EventType::MouseButtonPressed) 
+	{
+		switch (event.mouseButton.button) {
+		case sf::Mouse::Button::Left: 
+		{
+			int index = GetClickedArea(event.mouseButton.x, event.mouseButton.y);
 
-	int index = GetClickedArea(event.mouseButton.x, event.mouseButton.y);
+			if (index != -1)
+			{
+				Plant* pPlant = mpPlants[index];
+				pPlant->Shoot();
+			}
 
-	if(index == -1)
-		return;
+			break;
+		}
+		case sf::Mouse::Button::Right:
+		{
+			int index = GetClickedArea(event.mouseButton.x, event.mouseButton.y);
 
+			if (index != -1)
+			{
+				CreateZombie(index, event.mouseButton.x);
+			}
+
+			break;
+		}
+		case sf::Mouse::Button::Middle:
+		{
+			int index = GetClickedArea(event.mouseButton.x, event.mouseButton.y);
+
+			if (index != -1)
+			{
+				Plant* pPlant = mpPlants[index];
+				pPlant->Reload();
+			}
+
+			break;
+		}
+		}
+	}
+}
+
+void PVZScene::CreateZombie(int index, int x)
+{
 	const AABB* clickedArea = &mAreas[index];
 
 	int y = clickedArea->yMin + (clickedArea->yMax - clickedArea->yMin) / 2;
 
 	Zombie* pZombie = CreateEntity<Zombie>(25, sf::Color::Red);
-	pZombie->SetPosition(event.mouseButton.x, y, 0.5f, 0.5f);
+	pZombie->SetPosition(x, y, 0.5f, 0.5f);
 	pZombie->SetLane(index);
 
 	mLaneZombieCount[index]++;

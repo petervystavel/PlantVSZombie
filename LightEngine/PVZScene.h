@@ -4,6 +4,8 @@
 
 #include <list>
 
+#define PLAN_COUNT 3
+
 class Plant;
 class Zombie;
 
@@ -30,11 +32,13 @@ public:
 		PROJECTILE
 	};
 
-	int mLaneZombieCount[3] = {0, 0, 0};		
-	AABB mAreas[3];
+	int mLaneZombieCount[PLAN_COUNT] = {0};
+	AABB mAreas[PLAN_COUNT];
+	Plant* mpPlants[PLAN_COUNT];
 
 private:
 	int GetClickedArea(int x, int y) const;
+	void CreateZombie(int index, int x);
 
 public:
 	void OnInitialize() override;
