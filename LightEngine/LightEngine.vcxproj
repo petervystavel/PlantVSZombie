@@ -24,13 +24,7 @@
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="PlantCondition.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
-    </ClCompile>
     <ClCompile Include="Plant.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="PlantAction.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Projectile.cpp">
@@ -38,7 +32,6 @@
     </ClCompile>
     <ClCompile Include="SampleScene.cpp" />
     <ClCompile Include="Scene.cpp" />
-    <ClCompile Include="StateMachine.cpp" />
     <ClCompile Include="Zombie.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
@@ -48,18 +41,11 @@
     <ClCompile Include="Utils.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Action.h" />
     <ClInclude Include="Debug.h" />
     <ClInclude Include="DummyEntity.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="GameManager.h" />
-    <ClInclude Include="PlantCondition.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
-    </ClInclude>
     <ClInclude Include="Plant.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="PlantAction.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="Projectile.h">
@@ -67,7 +53,6 @@
     </ClInclude>
     <ClInclude Include="SampleScene.h" />
     <ClInclude Include="Scene.h" />
-    <ClInclude Include="StateMachine.h" />
     <ClInclude Include="Zombie.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClInclude>
@@ -80,7 +65,6 @@
     <None Include="Entity.inl" />
     <None Include="GameManager.inl" />
     <None Include="Scene.inl" />
-    <None Include="StateMachine.inl" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

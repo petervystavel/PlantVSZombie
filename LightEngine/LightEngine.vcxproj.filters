@@ -7,12 +7,6 @@
     <Filter Include="Game">
       <UniqueIdentifier>{656b759f-efb2-4f59-b546-0dd585a90074}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\StateMachine">
-      <UniqueIdentifier>{54f9566d-eec3-46ad-82d3-6b67b6e11b84}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Game\PlantStateMachine">
-      <UniqueIdentifier>{e5a990fd-2950-4273-9213-ca67aec6d3fd}</UniqueIdentifier>
-    </Filter>
     <Filter Include="SampleScene">
       <UniqueIdentifier>{cb0c1b12-51a1-456e-88e6-82b04b889c68}</UniqueIdentifier>
     </Filter>
@@ -37,17 +31,8 @@
     <ClCompile Include="Zombie.cpp">
       <Filter>Game</Filter>
     </ClCompile>
-    <ClCompile Include="StateMachine.cpp">
-      <Filter>Engine\StateMachine</Filter>
-    </ClCompile>
-    <ClCompile Include="PlantAction.cpp">
-      <Filter>Game\PlantStateMachine</Filter>
-    </ClCompile>
     <ClCompile Include="Projectile.cpp">
       <Filter>Game</Filter>
-    </ClCompile>
-    <ClCompile Include="PlantCondition.cpp">
-      <Filter>Game\PlantStateMachine</Filter>
     </ClCompile>
     <ClCompile Include="Scene.cpp">
       <Filter>Engine</Filter>
@@ -79,20 +64,8 @@
     <ClInclude Include="Zombie.h">
       <Filter>Game</Filter>
     </ClInclude>
-    <ClInclude Include="Action.h">
-      <Filter>Engine\StateMachine</Filter>
-    </ClInclude>
-    <ClInclude Include="StateMachine.h">
-      <Filter>Engine\StateMachine</Filter>
-    </ClInclude>
-    <ClInclude Include="PlantAction.h">
-      <Filter>Game\PlantStateMachine</Filter>
-    </ClInclude>
     <ClInclude Include="Projectile.h">
       <Filter>Game</Filter>
-    </ClInclude>
-    <ClInclude Include="PlantCondition.h">
-      <Filter>Game\PlantStateMachine</Filter>
     </ClInclude>
     <ClInclude Include="Scene.h">
       <Filter>Engine</Filter>
@@ -111,9 +84,6 @@
     </None>
     <None Include="GameManager.inl">
       <Filter>Engine</Filter>
-    </None>
-    <None Include="StateMachine.inl">
-      <Filter>Engine\StateMachine</Filter>
     </None>
     <None Include="Entity.inl">
       <Filter>Engine</Filter>
