@@ -33,16 +33,13 @@ public:
 	int GetAmmo() const { return mAmmo; }
 	int GetMaxAmmo() const { return mMaxAmmo; }
 	int GetAreaIndex() const { return mAreaIndex; }
+	void Shoot();
+	void Reload();
 	
 protected:
 	void OnUpdate() override;
-	void OnCollision(Entity* pCollidedWith) override;
 
 	friend class PlantAction_Idle;
 	friend class PlantAction_Reloading;
 	friend class PlantAction_Shooting;
-
-	friend class PlantCondition_FullAmmo;
-	friend class PlantCondition_NoAmmo;
-	friend class PlantCondition_ZombieOnLane;
 };
