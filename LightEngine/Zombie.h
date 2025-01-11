@@ -13,5 +13,4 @@ public:
 protected:
 	void OnInitialize() override;
 	void OnCollision(Entity* pCollidedWith) override;
-	void OnDestroy() override;
 };

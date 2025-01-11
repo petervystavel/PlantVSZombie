@@ -20,7 +20,6 @@ void PVZScene::OnInitialize()
 	{
 		mpPlants[i] = CreateEntity<Plant>(plantRadius, sf::Color::Green);
 		mpPlants[i]->SetPosition(plantStartX, plantStartY, 0.f, 0.5f);
-		mpPlants[i]->SetAreaIndex(i);
 
 		int xMin = plantStartX + plantRadius * 3.f;
 		int yMin = plantStartY - plantRadius;
@@ -58,45 +57,45 @@ int PVZScene::GetClickedArea(int x, int y) const
 
 void PVZScene::OnEvent(const sf::Event& event)
 {
-	if (event.type != sf::Event::EventType::MouseButtonPressed) 
+	if (event.type != sf::Event::EventType::MouseButtonPressed)
+		return;
+
+	switch (event.mouseButton.button) {
+	case sf::Mouse::Button::Left:
 	{
-		switch (event.mouseButton.button) {
-		case sf::Mouse::Button::Left: 
+		int index = GetClickedArea(event.mouseButton.x, event.mouseButton.y);
+
+		if (index != -1)
 		{
-			int index = GetClickedArea(event.mouseButton.x, event.mouseButton.y);
-
-			if (index != -1)
-			{
-				Plant* pPlant = mpPlants[index];
-				pPlant->Shoot();
-			}
-
-			break;
+			Plant* pPlant = mpPlants[index];
+			pPlant->Shoot();
 		}
-		case sf::Mouse::Button::Right:
+
+		break;
+	}
+	case sf::Mouse::Button::Right:
+	{
+		int index = GetClickedArea(event.mouseButton.x, event.mouseButton.y);
+
+		if (index != -1)
 		{
-			int index = GetClickedArea(event.mouseButton.x, event.mouseButton.y);
-
-			if (index != -1)
-			{
-				CreateZombie(index, event.mouseButton.x);
-			}
-
-			break;
+			CreateZombie(index, event.mouseButton.x);
 		}
-		case sf::Mouse::Button::Middle:
+
+		break;
+	}
+	case sf::Mouse::Button::Middle:
+	{
+		int index = GetClickedArea(event.mouseButton.x, event.mouseButton.y);
+
+		if (index != -1)
 		{
-			int index = GetClickedArea(event.mouseButton.x, event.mouseButton.y);
-
-			if (index != -1)
-			{
-				Plant* pPlant = mpPlants[index];
-				pPlant->Reload();
-			}
-
-			break;
+			Plant* pPlant = mpPlants[index];
+			pPlant->Reload();
 		}
-		}
+
+		break;
+	}
 	}
 }
 
@@ -109,22 +108,4 @@ void PVZScene::CreateZombie(int index, int x)
 	Zombie* pZombie = CreateEntity<Zombie>(25, sf::Color::Red);
 	pZombie->SetPosition(x, y, 0.5f, 0.5f);
 	pZombie->SetLane(index);
-
-	mLaneZombieCount[index]++;
-}
-
-bool PVZScene::IsZombieInArea(int index) const
-{
-	_ASSERT(index >= 0 && index < PLAN_COUNT);
-
-	return mLaneZombieCount[index] > 0;
-}
-
-void PVZScene::OnDestroyZombie(int lane)
-{
-	_ASSERT(lane >= 0 && lane < PLAN_COUNT);
-	if(mLaneZombieCount[lane] <= 0)
-		return;
-
-	mLaneZombieCount[lane]--;
 }

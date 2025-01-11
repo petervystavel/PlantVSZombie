@@ -32,7 +32,6 @@ public:
 		PROJECTILE
 	};
 
-	int mLaneZombieCount[PLAN_COUNT] = {0};
 	AABB mAreas[PLAN_COUNT];
 	Plant* mpPlants[PLAN_COUNT];
 
@@ -45,7 +44,5 @@ public:
 	void OnEvent(const sf::Event& event) override;
 	void OnUpdate() override;
 
-	bool IsZombieInArea(int index) const;
-	void OnDestroyZombie(int lane);
 };
 

@@ -7,6 +7,12 @@
 
 #include "Debug.h"
 
+void Plant::OnInitialize()
+{
+	SetTag(PVZScene::Tag::PLANT);
+	mAmmo = mMaxAmmo;
+}
+
 void Plant::OnUpdate()
 {
 	const sf::Vector2f& position = GetPosition();
