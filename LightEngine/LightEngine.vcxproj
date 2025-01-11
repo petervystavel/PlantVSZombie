@@ -39,8 +39,6 @@
     </ClCompile>
     <ClCompile Include="SampleScene.cpp" />
     <ClCompile Include="Scene.cpp" />
-    <ClCompile Include="StateMachine.cpp" />
-    <ClCompile Include="Transition.cpp" />
     <ClCompile Include="Zombie.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
@@ -50,7 +48,7 @@
     <ClCompile Include="Utils.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Behaviour.h" />
+    <ClInclude Include="Action.h" />
     <ClInclude Include="Condition.h" />
     <ClInclude Include="Debug.h" />
     <ClInclude Include="DummyEntity.h" />

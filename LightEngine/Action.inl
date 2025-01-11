@@ -1,9 +1,8 @@
 #pragma once
 
-#include "Behaviour.h"
+#include "Action.h"
 
 #include "Transition.h"
-#include "Condition.h"
 
 template<typename T>
 Action<T>::~Action()

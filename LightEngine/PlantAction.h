@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Behaviour.h"
+#include "Action.h"
 #include "Plant.h"
 
 class PlantAction_Idle : public Action<Plant>

@@ -2,7 +2,7 @@
 
 #include <vector>
 
-#include "Behaviour.h"
+#include "Action.h"
 
 template<typename T>
 class StateMachine
