@@ -18,7 +18,7 @@ class PlantAction_Shooting : public Action<Plant>
 public:
 	void OnStart(Plant* pPlant) override;
 	void OnUpdate(Plant* pPlant) override;
-	void OnEnd(Plant* pPlant) override;
+	void OnEnd(Plant* pPlant) override {};
 };
 
 class PlantAction_Reloading : public Action<Plant>

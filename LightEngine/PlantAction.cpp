@@ -19,18 +19,7 @@ void PlantAction_Shooting::OnUpdate(Plant* pPlant)
 
 	mShootTimer -= pPlant->mShootCadence;
 
-	PVZScene* pScene = pPlant->GetScene<PVZScene>();
-
-	const sf::Vector2f& position = pPlant->GetPosition();
-
-	Projectile* pProjectile = pScene->CreateEntity<Projectile>(5.0f, sf::Color::Red);
-	pProjectile->SetPosition(position.x, position.y);
-
-	pPlant->mAmmo--;
-}
-
-void PlantAction_Shooting::OnEnd(Plant* pPlant)
-{
+	pPlant->Shoot();
 }
 
 void PlantAction_Reloading::OnStart(Plant* pPlant)
@@ -45,5 +34,6 @@ void PlantAction_Reloading::OnUpdate(Plant* pPlant)
 	if (mReloadTimer < pPlant->mReloadDuration)
 		return;
 
-	pPlant->mAmmo = pPlant->mMaxAmmo;
+	pPlant->Reload();
+	pPlant->mStateMachine.SetState(Plant::Idle);
 }

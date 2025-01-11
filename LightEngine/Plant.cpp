@@ -83,6 +83,24 @@ const char* Plant::GetStateName(State state) const
 	}
 }
 
+void Plant::Shoot()
+{
+	if (mAmmo <= 0)
+		return;
+
+	const sf::Vector2f& position = GetPosition();
+
+	Projectile* pProjectile = CreateEntity<Projectile>(5.0f, sf::Color::Red);
+	pProjectile->SetPosition(position.x, position.y);
+
+	mAmmo--;
+}
+
+void Plant::Reload()
+{
+	mAmmo = mMaxAmmo;
+}
+
 void Plant::OnUpdate()
 {
 	const sf::Vector2f& position = GetPosition();
