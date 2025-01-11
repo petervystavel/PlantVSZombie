@@ -1,5 +1,6 @@
 #include "PlantAction.h"
 #include "Plant.h"
+#include "StateMachine.h"
 
 #include "GameManager.h"
 #include "Projectile.h"
@@ -35,5 +36,5 @@ void PlantAction_Reloading::OnUpdate(Plant* pPlant)
 		return;
 
 	pPlant->Reload();
-	pPlant->mStateMachine.SetState(Plant::Idle);
+	pPlant->mpStateMachine->SetState(Plant::Idle);
 }

@@ -5,14 +5,16 @@
 #include "PVZScene.h"
 #include "Projectile.h"
 
+#include "StateMachine.h"
 #include "PlantAction.h"
 #include "PlantCondition.h"
 
 #include "Debug.h"
 
-Plant::Plant() :
-	mStateMachine(this, State::Count)
+void Plant::OnInitialize()
 {
+	mpStateMachine = new StateMachine<Plant>(this, State::Count);
+
 	mAreaIndex = -1;
 	mAmmo = mMaxAmmo;
 
@@ -20,12 +22,12 @@ Plant::Plant() :
 
 	//IDLE
 	{
-		Action<Plant>* pIdle = mStateMachine.CreateAction<PlantAction_Idle>(State::Idle);
+		Action<Plant>* pIdle = mpStateMachine->CreateAction<PlantAction_Idle>(State::Idle);
 
 		//-> SHOOTING
 		{
 			auto transition = pIdle->CreateTransition(State::Shooting);
-			
+
 			auto condition = transition->AddCondition<PlantCondition_ZombieOnLane>();
 		}
 
@@ -40,36 +42,36 @@ Plant::Plant() :
 
 	//SHOOTING
 	{
-		Action<Plant>* pShooting = mStateMachine.CreateAction<PlantAction_Shooting>(State::Shooting);
+		Action<Plant>* pShooting = mpStateMachine->CreateAction<PlantAction_Shooting>(State::Shooting);
 
 		//-> IDLE
 		{
 			auto transition = pShooting->CreateTransition(State::Idle);
-			
+
 			transition->AddCondition<PlantCondition_ZombieOnLane>(false);
 		}
 
 		//-> RELOADING
 		{
 			auto transition = pShooting->CreateTransition(State::Reloading);
-			
+
 			transition->AddCondition<PlantCondition_NoAmmo>();
 		}
 	}
 
 	//RELOADING
 	{
-		Action<Plant>* pShooting = mStateMachine.CreateAction<PlantAction_Reloading>(State::Reloading);
+		Action<Plant>* pShooting = mpStateMachine->CreateAction<PlantAction_Reloading>(State::Reloading);
 
 		//-> IDLE
 		{
 			auto transition = pShooting->CreateTransition(State::Idle);
-			
+
 			auto condition = transition->AddCondition<PlantCondition_FullAmmo>();
 		}
 	}
 
-	mStateMachine.SetState(State::Idle);
+	mpStateMachine->SetState(State::Idle);
 }
 
 const char* Plant::GetStateName(State state) const
@@ -104,12 +106,12 @@ void Plant::Reload()
 void Plant::OnUpdate()
 {
 	const sf::Vector2f& position = GetPosition();
-	const char* stateName = GetStateName((Plant::State)mStateMachine.GetCurrentState());
+	const char* stateName = GetStateName((Plant::State)mpStateMachine->GetCurrentState());
 
 	std::string ammo = std::to_string(mAmmo) + "/" + std::to_string(mMaxAmmo);
 
 	Debug::DrawText(position.x, position.y - 50, stateName, 0.5f, 0.5f, sf::Color::Red);
 	Debug::DrawText(position.x, position.y, ammo, 0.5f, 0.5f, sf::Color::Blue);
 
-	mStateMachine.Update();
+	mpStateMachine->Update();
 }
