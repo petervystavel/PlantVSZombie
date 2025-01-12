@@ -82,12 +82,16 @@ void PVZScene::OnEvent(const sf::Event& event)
 
 bool PVZScene::IsZombieInArea(int index) const
 {
-	/* TODO */
+	_ASSERT(index >= 0 && index < PLANT_COUNT);
 
-	return false;
+	return mLaneZombieCount[index] > 0;
 }
 
 void PVZScene::OnDestroyZombie(int lane)
 {
-	/* TODO */
+	_ASSERT(lane >= 0);
+	if (mLaneZombieCount[lane] <= 0)
+		return;
+
+	mLaneZombieCount[lane]--;
 }
