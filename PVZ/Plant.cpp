@@ -62,13 +62,6 @@ void Plant::OnInitialize()
 	//RELOADING
 	{
 		Action<Plant>* pShooting = mpStateMachine->CreateAction<PlantAction_Reloading>(State::Reloading);
-
-		//-> IDLE
-		{
-			auto transition = pShooting->CreateTransition(State::Idle);
-
-			auto condition = transition->AddCondition<PlantCondition_FullAmmo>();
-		}
 	}
 
 	mpStateMachine->SetState(State::Idle);
