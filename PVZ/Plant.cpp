@@ -43,10 +43,6 @@ void Plant::OnInitialize()
 	//RELOADING
 	{
 		Action<Plant>* pShooting = mpStateMachine->CreateAction<PlantAction_Reloading>(State::Reloading);
-
-		/*TODO*/
-
-		//Transition Idle
 	}
 
 	mpStateMachine->SetState(State::Idle);
