@@ -20,7 +20,7 @@ void Plant::OnInitialize()
 	SetTag(PVZScene::Tag::PLANT);
 
 	mpStateMachine->AddAction<PlantAction_Idle>(State::Idle);
-	mpStateMachine->AddAction<PlantAction_Shooting>(State::Shooting);
+	mpStateMachine->AddAction<PlantAction_Shoot>(State::Shooting);
 	mpStateMachine->AddAction<PlantAction_Reloading>(State::Reloading);
 
 	mpStateMachine->SetState(State::Idle);

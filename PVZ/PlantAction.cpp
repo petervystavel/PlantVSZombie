@@ -14,14 +14,14 @@ void PlantAction_Idle::Update(Plant* pPlant)
 	// Transition to reloading
 }
 
-void PlantAction_Shooting::Start(Plant* pPlant)
+void PlantAction_Shoot::Start(Plant* pPlant)
 {
 	/* TODO */
 
 	// Start timer
 }
 
-void PlantAction_Shooting::Update(Plant* pPlant)
+void PlantAction_Shoot::Update(Plant* pPlant)
 {
 	/* TODO */
 

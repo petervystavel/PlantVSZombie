@@ -11,7 +11,7 @@ public:
 	void End(Plant* pPlant) override {}
 };
 
-class PlantAction_Shooting : public Action<Plant>
+class PlantAction_Shoot : public Action<Plant>
 {
 	float mShootTimer = 0.0f;
 

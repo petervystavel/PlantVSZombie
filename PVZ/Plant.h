@@ -42,5 +42,5 @@ protected:
 
 	friend class PlantAction_Idle;
 	friend class PlantAction_Reloading;
-	friend class PlantAction_Shooting;
+	friend class PlantAction_Shoot;
 };
