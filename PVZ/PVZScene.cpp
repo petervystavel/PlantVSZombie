@@ -6,6 +6,16 @@
 
 void PVZScene::OnInitialize()
 {
+	int width = GetWindowWidth();
+	int height = GetWindowHeight();
+
+	float plantRadius = height * 0.075f;
+
+	float plantStartY = height / (PLANT_COUNT * 2.f);
+	float plantGapY = height / (float)PLANT_COUNT;
+
+	float plantStartX = width * 0.05f;
+
 	/* TODO */
 
 	// Create plants
