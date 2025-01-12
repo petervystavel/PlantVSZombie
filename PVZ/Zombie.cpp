@@ -15,15 +15,9 @@ void Zombie::OnCollision(Entity* pCollidedWith)
 {
 	if (pCollidedWith->IsTag(PVZScene::Tag::PROJECTILE) || pCollidedWith->IsTag(PVZScene::Tag::PLANT))
 	{
+		GetScene<PVZScene>()->OnDestroyZombie(mLane);
+
 		Destroy();
 	}
 }
 
-void Zombie::OnDestroy()
-{
-	_ASSERT(mLane != -1);
-
-	PVZScene* pScene = GetScene<PVZScene>();
-
-	pScene->OnDestroyZombie(mLane);
-}
