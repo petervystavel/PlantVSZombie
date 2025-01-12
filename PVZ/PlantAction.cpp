@@ -36,5 +36,6 @@ void PlantAction_Reloading::OnUpdate(Plant* pPlant)
 		return;
 
 	pPlant->Reload();
+
 	pPlant->mpStateMachine->SetState(Plant::Idle);
 }
