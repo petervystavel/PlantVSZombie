@@ -8,10 +8,11 @@
 
 void PlantAction_Idle::Update(Plant* pPlant)
 {
+	/* ACTION */
 	/* TODO */
 
-	// Transition to shooting
-	// Transition to reloading
+	/* TRANSITION */
+	/* TODO */
 }
 
 void PlantAction_Shoot::Start(Plant* pPlant)
@@ -23,12 +24,11 @@ void PlantAction_Shoot::Start(Plant* pPlant)
 
 void PlantAction_Shoot::Update(Plant* pPlant)
 {
+	/* ACTION */
 	/* TODO */
 
-	// Shoot
-
-	// Transition to idle
-	// Transition to reloading
+	/* TRANSITION */
+	/* TODO */
 }
 
 void PlantAction_Reloading::Start(Plant* pPlant)
@@ -40,7 +40,9 @@ void PlantAction_Reloading::Start(Plant* pPlant)
 
 void PlantAction_Reloading::Update(Plant* pPlant)
 {
+	/* ACTION */
 	/* TODO */
 
-	// Transition to idle
+	/* TRANSITION */
+	/* TODO */
 }
